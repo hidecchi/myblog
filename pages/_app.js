@@ -25,10 +25,10 @@ function MyApp({ Component, pageProps }) {
     <>
       <Head>
         <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet" />
-
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link href="https://fonts.googleapis.com/css2?family=Sawarabi+Mincho" rel="stylesheet"></link>
+        <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <drawerContext.Provider value={value}>
         <Header />
