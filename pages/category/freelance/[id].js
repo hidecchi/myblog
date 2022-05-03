@@ -53,6 +53,7 @@ export default function archive(blogs) {
     for (let i = 1; i <= blogs.maxPageNumber; i++) {
         pagers.push(i);
     }
+    
     return (
         <>
             <Head>
