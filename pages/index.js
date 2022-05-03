@@ -40,5 +40,4 @@ export default function Home({ blogs }) {
       </div>
     </>
   )
-
 }
