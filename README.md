@@ -1,3 +1,2 @@
-#myblog
 
-Next.jsとContentfulで再作したJamstackブログの実装コードです。
+Next.jsとContentfulで制作したJamstackブログの実装コードです。
