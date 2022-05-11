@@ -69,7 +69,7 @@ export default function Contact() {
           width:100%;
           max-width:400px;
           height:130px;
-          padding: 2px 0;
+          padding: 2px;
           font-family: Arial, YuGothic, "Yu Gothic medium", "Hiragino Sans", Meiryo, "sans-serif";
           border:1px solid #d3cece;
           border-radius:0px;
