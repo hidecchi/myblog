@@ -59,14 +59,8 @@ li {
 }
 
 code {
-  display: block;
-  max-width: 100%;
-  width: 860px;
-  padding: 20px;
-  overflow-x: scroll;
+  width: 100%;
   background: #eeecf4 !important;
-  color: #1b1b1b;
-  font-family: sans-serif;
   font-family: Arial, YuGothic, "Yu Gothic medium", "Hiragino Sans", Meiryo,
     "sans-serif";
 }

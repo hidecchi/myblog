@@ -4,7 +4,7 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { BLOCKS, MARKS } from "@contentful/rich-text-types";
 import { useRouter } from "next/router";
 import hljs from "highlight.js";
-// import marked from "marked";
+import Image from "next/image";
 import { useEffect } from "react";
 
 const client = createClient({
@@ -66,25 +66,6 @@ export default function BlogDetails({ blog }) {
     window.open(shareUrl, "_blank");
   };
 
-  //   function code(text) {
-  //     text.shift(); // コードブロックのfalseを削除
-  //     const language = text.shift(); // コードブロックの1行目の言語指定をClassに利用後削除
-  //     text.shift(); // コードブロックの1行目の改行を削除
-
-  //     const value = text.reduce((acc, cur) => {
-  //       if (typeof cur !== "string" && cur.type === "br") {
-  //         return acc + "\n";
-  //       }
-  //       return acc + cur;
-  //     }, "");
-
-  //     return (
-  //       <SyntaxHighlighter language={language} style={okaidia}>
-  //         {value}
-  //       </SyntaxHighlighter>
-  //     );
-  //   }
-
   if (!blog)
     return (
       <>
@@ -115,10 +96,6 @@ export default function BlogDetails({ blog }) {
           content={"https:" + blog.fields.thumbnail.fields.file.url}
         />
         <meta property="og:type" content="article" />
-        <link
-          rel="stylesheet"
-          href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/default.min.css"
-        />
       </Head>
       <div className="main">
         <h2>{blog.fields.title}</h2>
@@ -136,15 +113,17 @@ export default function BlogDetails({ blog }) {
           </a>
         </div>
         <p className="thumbnail">
-          <img
+          <Image
             src={"https:" + blog.fields.thumbnail.fields.file.url}
-            width="200"
-            height="200"
+            layout="fill"
+            objectFit="cover"
+            alt=""
+            width={850}
+            height={500}
           />
         </p>
 
         <div className="contents">
-          {/* {documentToReactComponents(blog.fields.blogcontent)} */}
           {documentToReactComponents(blog.fields.blogcontent, {
             renderNode: {
               // eslint-disable-next-line react/display-name
