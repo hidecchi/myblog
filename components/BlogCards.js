@@ -27,8 +27,8 @@ export default function BlogCards({ blogs }) {
                   layout="fill"
                   objectFit="cover"
                   alt=""
-                  width={850}
-                  height={500}
+                  width={510}
+                  height={300}
                 />
               </p>
               <h2>{blog.fields.title}</h2>

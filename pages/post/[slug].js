@@ -120,6 +120,7 @@ export default function BlogDetails({ blog }) {
             alt=""
             width={850}
             height={500}
+            priority={true}
           />
         </p>
 
