@@ -64,6 +64,7 @@ code {
   padding: 20px;
 
   color: #1b1b1b; */
+  display: block;
   padding: 1em;
   overflow-x: auto;
   background: #eeecf4 !important;
