@@ -1,34 +1,36 @@
-import Head from 'next/head'
-import { createClient } from 'contentful'
-import BlogCards from '../components/BlogCards'
-
+import Head from "next/head";
+import { createClient } from "contentful";
+import BlogCards from "../components/BlogCards";
 
 export async function getStaticProps() {
   const client = createClient({
     space: process.env.CONTENTFUL_SPACE_ID,
     accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-  })
+  });
   const res = await client.getEntries({
-    content_type: 'blog',
-    order: '-sys.createdAt',
+    content_type: "blog",
+    order: "-sys.createdAt",
     limit: 6,
-  })
+  });
   return {
     props: {
-      blogs: res.items
+      blogs: res.items,
     },
-    revalidate: 1
-  }
+    revalidate: 1,
+  };
 }
 
 export default function Home({ blogs }) {
-  console.log(blogs)
-  const heading = '新着記事'
+  // console.log(blogs)
+  const heading = "新着記事";
   return (
     <>
       <Head>
         <title>kitsune Blog</title>
-        <meta name="description" content="Web系フリーランスkitsuneのブログです。フリーランス、プログラミング、その他について発信しています。" />
+        <meta
+          name="description"
+          content="Web系フリーランスkitsuneのブログです。フリーランス、プログラミング、その他について発信しています。"
+        />
         <meta property="og:site_name" content="kitsune Blog" />
         <meta property="og:title" content="kitsune Blog" />
         <meta property="og:image" content="" />
@@ -39,5 +41,5 @@ export default function Home({ blogs }) {
         <BlogCards blogs={blogs} />
       </div>
     </>
-  )
+  );
 }
