@@ -42,7 +42,7 @@ export default function BlogDetails({ blog }) {
   useEffect(() => {
     // client side で invoke
     hljs.highlightAll();
-  }, [hljs]);
+  }, []);
   const router = useRouter();
   // console.log(router.query.name);
   // let url=''
@@ -139,7 +139,13 @@ export default function BlogDetails({ blog }) {
                 return <p>{children}</p>;
               },
               [BLOCKS.EMBEDDED_ASSET]: (node) => (
-                <img src={"https:" + node.data.target.fields.file.url} />
+                <div className="imageContainer">
+                  <Image
+                    src={"https:" + node.data.target.fields.file.url}
+                    alt=""
+                    layout="fill"
+                  />
+                </div>
               ),
             },
           })}

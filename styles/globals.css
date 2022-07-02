@@ -225,6 +225,17 @@ code {
   color: #3374b7;
   /* display:none; */
 }
+.imageContainer {
+  max-width: 450px;
+}
+.imageContainer > span {
+  position: unset !important;
+}
+.imageContainer img {
+  position: relative !important;
+  width: 100% !important;
+  height: unset !important;
+}
 
 @media screen and (max-width: 1310px) {
   footer {
