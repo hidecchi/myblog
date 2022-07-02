@@ -121,6 +121,7 @@ export default function BlogDetails({ blog }) {
             width={850}
             height={500}
             priority={true}
+            sizes={"450px"}
           />
         </p>
 
@@ -145,6 +146,7 @@ export default function BlogDetails({ blog }) {
                     src={"https:" + node.data.target.fields.file.url}
                     alt=""
                     layout="fill"
+                    sizes={"450px"}
                   />
                 </div>
               ),
