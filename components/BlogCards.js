@@ -29,6 +29,7 @@ export default function BlogCards({ blogs }) {
                   alt=""
                   width={510}
                   height={300}
+                  sizes={"300px"}
                 />
               </p>
               <h2>{blog.fields.title}</h2>
