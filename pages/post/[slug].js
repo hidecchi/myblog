@@ -3,9 +3,9 @@ import { createClient } from "contentful";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { BLOCKS, MARKS } from "@contentful/rich-text-types";
 import { useRouter } from "next/router";
-import hljs from "highlight.js";
 import Image from "next/image";
-import { useEffect } from "react";
+import SyntaxHighlighter from "react-syntax-highlighter";
+import { foundation } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 
 const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID,
@@ -39,10 +39,6 @@ export async function getStaticProps({ params }) {
 }
 
 export default function BlogDetails({ blog }) {
-  useEffect(() => {
-    // client side で invoke
-    hljs.highlightAll();
-  }, []);
   const router = useRouter();
   // console.log(router.query.name);
   // let url=''
@@ -133,9 +129,9 @@ export default function BlogDetails({ blog }) {
               [BLOCKS.PARAGRAPH]: (node, children) => {
                 if (node.content[0].marks.find((x) => x.type === "code")) {
                   return (
-                    <div>
-                      <pre>{children}</pre>
-                    </div>
+                    <SyntaxHighlighter language="javascript" style={foundation}>
+                      {node.content[0]?.value}
+                    </SyntaxHighlighter>
                   );
                 }
                 return <p>{children}</p>;
