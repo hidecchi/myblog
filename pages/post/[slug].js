@@ -40,22 +40,20 @@ export async function getStaticProps({ params }) {
 export default function BlogDetails({ blog }) {
   const router = useRouter();
   // console.log(router.query.name);
-  // let url=''
-  // if(location){
-  //     url=location.href;
-  // }
-  // console.log(url);
-  const twitterShare = function () {
+  const twitterShare = function (e) {
+    e.preventDefault();
     const url = location.href;
     const shareUrl = `https://twitter.com/share?url=${url}&text=${blog.fields.title}`;
     window.open(shareUrl, "_blank");
   };
-  const facebookShare = function () {
+  const facebookShare = function (e) {
+    e.preventDefault();
     const url = location.href;
     const shareUrl = `http://www.facebook.com/share.php?u=${url}`;
     window.open(shareUrl, "_blank");
   };
-  const lineShare = function () {
+  const lineShare = function (e) {
+    e.preventDefault();
     const url = location.href;
     const shareUrl = `https://social-plugins.line.me/lineit/share?url=${url}`;
     window.open(shareUrl, "_blank");
@@ -93,15 +91,15 @@ export default function BlogDetails({ blog }) {
       <div className="main">
         <h2>{blog.fields.title}</h2>
         <div className="sns-share">
-          <a className="twitter" onClick={twitterShare}>
+          <a className="twitter" onClick={twitterShare} href="#">
             <i className="fab fa-twitter"></i>
             <span>ツイート</span>
           </a>
-          <a className="facebook" onClick={facebookShare}>
+          <a className="facebook" onClick={facebookShare} href="#">
             <i className="fab fa-facebook-f"></i>
             <span>シェア</span>
           </a>
-          <a className="line" onClick={lineShare}>
+          <a className="line" onClick={lineShare} href="#">
             <span>LINE</span>
           </a>
         </div>
