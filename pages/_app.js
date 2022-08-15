@@ -36,7 +36,10 @@ function MyApp({ Component, pageProps }) {
           href="https://fonts.googleapis.com/css2?family=Sawarabi+Mincho&display=auto"
           rel="stylesheet"
         ></link>
-        <meta property="og:image" content={`${process.env.SITE_URL}/ogp.jpg`} />
+        <meta
+          property="og:image"
+          content={`https://kitsuneblog.vercel.app/ogp.jpg`}
+        />
         <meta property="og:site_name" content="kitsune Blog" />
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary_large_image" />
