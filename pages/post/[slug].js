@@ -81,7 +81,6 @@ export default function BlogDetails({ blog }) {
               : "Webエンジニアkitsuneのブログです。"
           }
         />
-        <meta property="og:site_name" content="kitsune Blog" />
         <meta
           property="og:title"
           content={blog.fields.title + " | kitsune Blog"}
@@ -90,7 +89,6 @@ export default function BlogDetails({ blog }) {
           property="og:image"
           content={"https:" + blog.fields.thumbnail.fields.file.url}
         />
-        <meta property="og:type" content="article" />
       </Head>
       <div className="main">
         <h2>{blog.fields.title}</h2>

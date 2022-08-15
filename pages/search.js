@@ -35,9 +35,7 @@ export default function Home() {
           name="description"
           content="Webエンジニアkitsuneのブログの検索ページです。"
         />
-        <meta property="og:site_name" content="kitsune Blog" />
         <meta property="og:title" content="検索ページ | kitsune Blog" />
-        <meta property="og:type" content="article" />
       </Head>
       <div className="main">
         <h2 className="heading">{heading}</h2>

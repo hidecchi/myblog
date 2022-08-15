@@ -37,9 +37,7 @@ export default function archive(blogs) {
     <>
       <Head>
         <title>アーカイブ | kitsune Blog</title>
-        <meta property="og:site_name" content="kitsune Blog" />
         <meta property="og:title" content="アーカイブ | kitsune Blog" />
-        <meta property="og:type" content="article" />
       </Head>
       <div className="main">
         <h2 className="heading">{heading}</h2>

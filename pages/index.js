@@ -30,9 +30,7 @@ export default function Home({ blogs }) {
           name="description"
           content="Webエンジニアkitsuneのブログです。フリーランス、プログラミング、その他について発信しています。"
         />
-        <meta property="og:site_name" content="kitsune Blog" />
         <meta property="og:title" content="kitsune Blog" />
-        <meta property="og:image" content="" />
         <meta property="og:type" content="website" />
       </Head>
       <div className="main">
