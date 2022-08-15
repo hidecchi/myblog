@@ -31,6 +31,10 @@ export default function Home({ blogs }) {
           content="Webエンジニアkitsuneのブログです。フリーランス、プログラミング、その他について発信しています。"
         />
         <meta property="og:title" content="kitsune Blog" />
+        <meta
+          property="og:image"
+          content={`https://kitsuneblog.vercel.app/ogp.jpg`}
+        />
         <meta property="og:type" content="website" />
       </Head>
       <div className="main">

@@ -87,6 +87,7 @@ export default function BlogDetails({ blog }) {
           property="og:image"
           content={"https:" + blog.fields.thumbnail.fields.file.url}
         />
+        <meta property="og:type" content="article" />
       </Head>
       <div className="main">
         <h2>{blog.fields.title}</h2>
