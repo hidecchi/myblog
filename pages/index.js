@@ -16,7 +16,6 @@ export async function getStaticProps() {
     props: {
       blogs: res.items,
     },
-    revalidate: 1,
   };
 }
 
@@ -29,7 +28,7 @@ export default function Home({ blogs }) {
         <title>kitsune Blog</title>
         <meta
           name="description"
-          content="Web系フリーランスkitsuneのブログです。フリーランス、プログラミング、その他について発信しています。"
+          content="Webエンジニアkitsuneのブログです。フリーランス、プログラミング、その他について発信しています。"
         />
         <meta property="og:site_name" content="kitsune Blog" />
         <meta property="og:title" content="kitsune Blog" />

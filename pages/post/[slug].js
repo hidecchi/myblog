@@ -21,7 +21,7 @@ export const getStaticPaths = async () => {
   });
   return {
     paths,
-    fallback: true,
+    fallback: false,
   };
 };
 
@@ -34,7 +34,6 @@ export async function getStaticProps({ params }) {
     props: {
       blog: items.items[0],
     },
-    revalidate: 1,
   };
 }
 
@@ -79,7 +78,7 @@ export default function BlogDetails({ blog }) {
           content={
             blog.fields.description
               ? blog.fields.description
-              : "Web系フリーランスkitsuneのブログです。"
+              : "Webエンジニアkitsuneのブログです。"
           }
         />
         <meta property="og:site_name" content="kitsune Blog" />

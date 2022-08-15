@@ -22,7 +22,6 @@ export async function getStaticProps() {
       pageNumber: 1,
       maxPageNumber: maxPageNumber,
     },
-    revalidate: 1,
   };
 }
 

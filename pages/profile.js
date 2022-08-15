@@ -8,7 +8,7 @@ export default function profile() {
         <title>プロフィール | kitsune Blog</title>
         <meta
           name="description"
-          content="Web系フリーランスkitsuneのブログのプロフィールページです。"
+          content="Webエンジニアkitsuneのブログのプロフィールページです。"
         />
       </Head>
       <div className="main">

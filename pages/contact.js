@@ -11,7 +11,7 @@ export default function Contact() {
         <title>お問い合わせ | kitsune Blog</title>
         <meta
           name="description"
-          content="Web系フリーランスkitsuneのブログの問い合わせページです。"
+          content="Webエンジニアkitsuneのブログの問い合わせページです。"
         />
       </Head>
       <div className="main">
