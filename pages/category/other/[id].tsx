@@ -46,7 +46,7 @@ export default function archive(blogs: any): JSX.Element {
   const startNumber = displayNumber * (blogs.pageNumber - 1);
   const displays = blogs.blogs.slice(startNumber, startNumber + displayNumber);
   const heading = "その他";
-  const pagers = [];
+  const pagers: number[] = [];
   for (let i = 1; i <= blogs.maxPageNumber; i++) {
     pagers.push(i);
   }
