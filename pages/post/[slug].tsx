@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { foundation } from "react-syntax-highlighter/dist/cjs/styles/hljs";
+import React from "react";
 
 const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID as string,
@@ -40,19 +41,19 @@ export async function getStaticProps({ params }: any) {
 export default function BlogDetails({ blog }: any): JSX.Element {
   const router = useRouter();
   // console.log(router.query.name);
-  const twitterShare = function (e) {
+  const twitterShare = function (e: React.MouseEvent<HTMLAnchorElement>) {
     e.preventDefault();
     const url = location.href;
     const shareUrl = `https://twitter.com/share?url=${url}&text=${blog.fields.title}`;
     window.open(shareUrl, "_blank");
   };
-  const facebookShare = function (e) {
+  const facebookShare = function (e: React.MouseEvent<HTMLAnchorElement>) {
     e.preventDefault();
     const url = location.href;
     const shareUrl = `http://www.facebook.com/share.php?u=${url}`;
     window.open(shareUrl, "_blank");
   };
-  const lineShare = function (e) {
+  const lineShare = function (e: React.MouseEvent<HTMLAnchorElement>) {
     e.preventDefault();
     const url = location.href;
     const shareUrl = `https://social-plugins.line.me/lineit/share?url=${url}`;
@@ -122,7 +123,7 @@ export default function BlogDetails({ blog }: any): JSX.Element {
             renderNode: {
               // eslint-disable-next-line react/display-name
 
-              [BLOCKS.PARAGRAPH]: (node, children) => {
+              [BLOCKS.PARAGRAPH]: (node: any, children) => {
                 if (node.content[0].marks.find((x: any) => x.type === "code")) {
                   return (
                     <SyntaxHighlighter language="javascript" style={foundation}>
