@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-export default function NotFound() {
+export default function NotFound(): JSX.Element {
   const router = useRouter();
   const redirection = function () {
     setTimeout(() => {

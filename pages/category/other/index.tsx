@@ -1,21 +1,21 @@
 import Head from "next/head";
 import { createClient } from "contentful";
 import BlogCards from "../../../components/BlogCards";
-import Pager from "../../../components/Pager";
+import Pager from "../../../modules/Pager";
 
 const client = createClient({
-  space: process.env.CONTENTFUL_SPACE_ID,
-  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+  space: process.env.CONTENTFUL_SPACE_ID as string,
+  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN as string,
 });
-const displayNumber = 6;
+const displayNumber: number = 6;
 
 export async function getStaticProps() {
   const res = await client.getEntries({
     content_type: "blog",
     order: "-sys.createdAt",
-    "metadata.tags.sys.id[all]": "programing",
+    "metadata.tags.sys.id[all]": "other",
   });
-  const maxPageNumber = Math.ceil(res.items.length / displayNumber);
+  const maxPageNumber: number = Math.ceil(res.items.length / displayNumber);
   return {
     props: {
       blogs: res.items,
@@ -25,19 +25,19 @@ export async function getStaticProps() {
   };
 }
 
-export default function freelance(blogs) {
-  const startNumber = displayNumber * (blogs.pageNumber - 1);
+export default function other(blogs: any): JSX.Element {
+  const startNumber: number = displayNumber * (blogs.pageNumber - 1);
   const displays = blogs.blogs.slice(startNumber, startNumber + displayNumber);
-  const heading = "プログラミング";
-  const pagers = [];
+  const heading = "その他";
+  const pagers: number[] = [];
   for (let i = 1; i <= blogs.maxPageNumber; i++) {
     pagers.push(i);
   }
   return (
     <>
       <Head>
-        <title>プログラミング | kitsune Blog</title>
-        <meta property="og:title" content="プログラミング | kitsune Blog" />
+        <title>その他 | kitsune Blog</title>
+        <meta property="og:title" content="その他 | kitsune Blog" />
       </Head>
       <div className="main">
         <h2 className="heading">{heading}</h2>

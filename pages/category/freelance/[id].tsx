@@ -1,20 +1,20 @@
 import Head from "next/head";
 import { createClient } from "contentful";
 import BlogCards from "../../../components/BlogCards";
-import Pager2 from "../../../components/Pager2";
+import Pager2 from "../../../modules/Pager2";
 
 const client = createClient({
-  space: process.env.CONTENTFUL_SPACE_ID,
-  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+  space: process.env.CONTENTFUL_SPACE_ID as string,
+  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN as string,
 });
 const displayNumber = 6;
 
 export const getStaticPaths = async () => {
-  const paths = [];
+  const paths: { params: { id: string } }[] = [];
   const res = await client.getEntries({
     content_type: "blog",
     order: "-sys.createdAt",
-    "metadata.tags.sys.id[all]": "programing",
+    "metadata.tags.sys.id[all]": "freelance",
   });
   const maxPageNumber = Math.ceil(res.items.length / displayNumber);
   for (let i = 1; i <= maxPageNumber; i++) {
@@ -26,11 +26,11 @@ export const getStaticPaths = async () => {
   };
 };
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params }: any) {
   const res = await client.getEntries({
     content_type: "blog",
     order: "-sys.createdAt",
-    "metadata.tags.sys.id[all]": "programing",
+    "metadata.tags.sys.id[all]": "freelance",
   });
   const maxPageNumber = Math.ceil(res.items.length / displayNumber);
   return {
@@ -42,19 +42,20 @@ export async function getStaticProps({ params }) {
   };
 }
 
-export default function archive(blogs) {
+export default function archive(blogs: any): JSX.Element {
   const startNumber = displayNumber * (blogs.pageNumber - 1);
   const displays = blogs.blogs.slice(startNumber, startNumber + displayNumber);
-  const heading = "プログラミング";
+  const heading = "フリーランス";
   const pagers = [];
   for (let i = 1; i <= blogs.maxPageNumber; i++) {
     pagers.push(i);
   }
+
   return (
     <>
       <Head>
-        <title>プログラミング | kitsune Blog</title>
-        <meta property="og:title" content="プログラミング | kitsune Blog" />
+        <title>フリーランス | kitsune Blog</title>
+        <meta property="og:title" content="フリーランス | kitsune Blog" />
       </Head>
       <div className="main">
         <h2 className="heading">{heading}</h2>

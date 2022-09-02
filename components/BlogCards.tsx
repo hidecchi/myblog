@@ -1,12 +1,12 @@
 import Link from "next/link";
-import TagLink from "./TagLink";
-import TagOutput from "./TagOutput";
+import TagLink from "../functions/tagLink";
+import TagOutput from "../functions/tagOutput";
 import Image from "next/image";
 
-export default function BlogCards({ blogs }) {
+export default function BlogCards({ blogs }: any): JSX.Element {
   return (
     <ul className="blog-list">
-      {blogs.map((blog) => (
+      {blogs.map((blog: any) => (
         <li key={blog.sys.id}>
           <div className="tag">
             {TagLink(blog) ? (

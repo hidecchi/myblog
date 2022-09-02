@@ -1,6 +1,6 @@
 import Head from "next/head";
 
-export default function profile() {
+export default function profile(): JSX.Element {
   const heading = "プロフィール";
   return (
     <>

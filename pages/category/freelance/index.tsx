@@ -1,13 +1,13 @@
 import Head from "next/head";
 import { createClient } from "contentful";
 import BlogCards from "../../../components/BlogCards";
-import Pager from "../../../components/Pager";
+import Pager from "../../../modules/Pager";
 
 const client = createClient({
-  space: process.env.CONTENTFUL_SPACE_ID,
-  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+  space: process.env.CONTENTFUL_SPACE_ID as string,
+  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN as string,
 });
-const displayNumber = 6;
+const displayNumber: number = 6;
 
 export async function getStaticProps() {
   const res = await client.getEntries({
@@ -15,7 +15,7 @@ export async function getStaticProps() {
     order: "-sys.createdAt",
     "metadata.tags.sys.id[all]": "freelance",
   });
-  const maxPageNumber = Math.ceil(res.items.length / displayNumber);
+  const maxPageNumber: number = Math.ceil(res.items.length / displayNumber);
   return {
     props: {
       blogs: res.items,
@@ -25,11 +25,11 @@ export async function getStaticProps() {
   };
 }
 
-export default function freelance(blogs) {
+export default function freelance(blogs: any): JSX.Element {
   const startNumber = displayNumber * (blogs.pageNumber - 1);
   const displays = blogs.blogs.slice(startNumber, startNumber + displayNumber);
   const heading = "フリーランス";
-  const pagers = [];
+  const pagers: number[] = [];
   for (let i = 1; i <= blogs.maxPageNumber; i++) {
     pagers.push(i);
   }

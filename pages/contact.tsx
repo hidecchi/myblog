@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import Head from "next/head";
 
-export default function Contact() {
+export default function Contact(): JSX.Element {
   const heading = "お問い合わせ";
-  const [thanks, setThanks] = useState("");
+  const [thanks, setThanks] = useState<string>("");
 
   return (
     <>

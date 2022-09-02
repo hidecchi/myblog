@@ -5,11 +5,20 @@ import { useState, useEffect } from "react";
 import Head from "next/head";
 import React, { createContext } from "react";
 import { useRouter } from "next/router";
+import type { AppProps } from "next/app";
 
-export const drawerContext = React.createContext();
+export const drawerContext = React.createContext<{
+  drawerOpen: boolean;
+  setDrawerOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}>(
+  {} as {
+    drawerOpen: boolean;
+    setDrawerOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  }
+);
 
-function MyApp({ Component, pageProps }) {
-  const [drawerOpen, setDrawerOpen] = useState(false);
+function MyApp({ Component, pageProps }: AppProps): JSX.Element {
+  const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
   const router = useRouter();
   const value = {
     drawerOpen,

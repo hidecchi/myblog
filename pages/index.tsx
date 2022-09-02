@@ -4,8 +4,8 @@ import BlogCards from "../components/BlogCards";
 
 export async function getStaticProps() {
   const client = createClient({
-    space: process.env.CONTENTFUL_SPACE_ID,
-    accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+    space: process.env.CONTENTFUL_SPACE_ID as string,
+    accessToken: process.env.CONTENTFUL_ACCESS_TOKEN as string,
   });
   const res = await client.getEntries({
     content_type: "blog",
@@ -19,8 +19,7 @@ export async function getStaticProps() {
   };
 }
 
-export default function Home({ blogs }) {
-  // console.log(blogs)
+export default function Home({ blogs }: any): JSX.Element {
   const heading = "新着記事";
   return (
     <>

@@ -8,13 +8,13 @@ import SyntaxHighlighter from "react-syntax-highlighter";
 import { foundation } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 
 const client = createClient({
-  space: process.env.CONTENTFUL_SPACE_ID,
-  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+  space: process.env.CONTENTFUL_SPACE_ID as string,
+  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN as string,
 });
 
 export const getStaticPaths = async () => {
-  const res = await client.getEntries({ content_type: "blog" });
-  const paths = res.items.map((item) => {
+  const res: any = await client.getEntries({ content_type: "blog" });
+  const paths = res.items.map((item: any) => {
     return {
       params: { slug: item.fields.slug },
     };
@@ -25,7 +25,7 @@ export const getStaticPaths = async () => {
   };
 };
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params }: any) {
   const items = await client.getEntries({
     content_type: "blog",
     "fields.slug": params.slug,
@@ -37,7 +37,7 @@ export async function getStaticProps({ params }) {
   };
 }
 
-export default function BlogDetails({ blog }) {
+export default function BlogDetails({ blog }: any): JSX.Element {
   const router = useRouter();
   // console.log(router.query.name);
   const twitterShare = function (e) {
@@ -123,7 +123,7 @@ export default function BlogDetails({ blog }) {
               // eslint-disable-next-line react/display-name
 
               [BLOCKS.PARAGRAPH]: (node, children) => {
-                if (node.content[0].marks.find((x) => x.type === "code")) {
+                if (node.content[0].marks.find((x: any) => x.type === "code")) {
                   return (
                     <SyntaxHighlighter language="javascript" style={foundation}>
                       {node.content[0]?.value}
