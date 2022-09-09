@@ -122,8 +122,11 @@ export default function BlogDetails({ blog }: any): JSX.Element {
           {documentToReactComponents(blog.fields.blogcontent, {
             renderNode: {
               // eslint-disable-next-line react/display-name
-
+              [BLOCKS.HEADING_2]: (node, children) => {
+                return <h2>{children}</h2>;
+              },
               [BLOCKS.PARAGRAPH]: (node: any, children) => {
+                console.log(node);
                 if (node.content[0].marks.find((x: any) => x.type === "code")) {
                   return (
                     <SyntaxHighlighter language="javascript" style={foundation}>
@@ -131,6 +134,10 @@ export default function BlogDetails({ blog }: any): JSX.Element {
                     </SyntaxHighlighter>
                   );
                 }
+                if (node.content[0].marks.find((x: any) => x.type === "h2")) {
+                  return <h2>{children}</h2>;
+                }
+
                 return <p>{children}</p>;
               },
               [BLOCKS.EMBEDDED_ASSET]: (node) => (
@@ -197,10 +204,10 @@ export default function BlogDetails({ blog }: any): JSX.Element {
             min-height: 1.6em;
           }
           .contents h2 {
-            margin: 1em 0;
+            margin: 1.8em 0;
             padding: 0.8em 0.8em 0.8em 1em;
             border-left: 1px solid rgba(120, 120, 120, 0.4);
-            background-color: rgba(255, 255, 255, 0.3);
+            background-color: rgba(255, 255, 255, 0.5);
             font-weight: 400;
             font-size: 20px;
             line-height: 1.6;
