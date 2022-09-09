@@ -27,9 +27,16 @@ export default function Header(): JSX.Element {
 
   return (
     <header>
-      <h1 className="site-title">
-        <Link href="/">Kitsune Blog</Link>
-      </h1>
+      {router.pathname === "/" ? (
+        <h1 className="site-title">
+          <Link href="/">Kitsune Blog</Link>
+        </h1>
+      ) : (
+        <p className="site-title">
+          <Link href="/">Kitsune Blog</Link>
+        </p>
+      )}
+
       <div className={drawerOpen ? "menus is-open" : "menus"}>
         <nav>
           <ul>
@@ -79,13 +86,13 @@ export default function Header(): JSX.Element {
           </button>
         </form>
       </div>
-      <div
+      <button
         className={drawerOpen ? "menu-btn is-open" : "menu-btn"}
         onClick={toggleDrawer}
       >
         <span></span>
         <span></span>
-      </div>
+      </button>
       <style jsx>
         {`
           header {
@@ -231,6 +238,9 @@ export default function Header(): JSX.Element {
               align-items: center;
               font-size: 12px;
               z-index: 200;
+              appearance: none;
+              border: none;
+              background-color: transparent;
             }
             .menu-btn span:nth-of-type(1) {
               display: table;

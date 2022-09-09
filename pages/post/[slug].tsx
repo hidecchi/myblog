@@ -91,7 +91,7 @@ export default function BlogDetails({ blog }: any): JSX.Element {
         <meta property="og:type" content="article" />
       </Head>
       <div className="main">
-        <h2>{blog.fields.title}</h2>
+        <h1>{blog.fields.title}</h1>
         <div className="sns-share">
           <a className="twitter" onClick={twitterShare} href="#">
             <i className="fab fa-twitter"></i>
@@ -149,7 +149,7 @@ export default function BlogDetails({ blog }: any): JSX.Element {
       </div>
       <style jsx>
         {`
-          h2 {
+          h1 {
             margin-bottom: 0.7em;
             font-size: 22px;
           }
@@ -196,9 +196,18 @@ export default function BlogDetails({ blog }: any): JSX.Element {
           .contents p {
             min-height: 1.6em;
           }
+          .contents h2 {
+            margin: 1em 0;
+            padding: 0.8em 0.8em 0.8em 1em;
+            border-left: 1px solid rgba(120, 120, 120, 0.4);
+            background-color: rgba(255, 255, 255, 0.3);
+            font-weight: 400;
+            font-size: 20px;
+            line-height: 1.6;
+          }
 
           @media screen and (max-width: 540px) {
-            h2 {
+            h1 {
               font-size: 18px;
             }
             .sns-share a {
@@ -209,6 +218,9 @@ export default function BlogDetails({ blog }: any): JSX.Element {
             }
             .contents img {
               max-width: 100%;
+            }
+            .contents h2 {
+              font-size: 17px;
             }
           }
         `}

@@ -92,6 +92,8 @@ code {
   display: flex;
   align-items: center;
   margin-bottom: 0.3em;
+
+  font-size: 1.5em;
   font-family: "Sawarabi Mincho", sans-serif;
 }
 .heading::before {

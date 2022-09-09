@@ -34,6 +34,7 @@ export default function Home({ blogs }: any): JSX.Element {
           property="og:image"
           content={`https://kitsuneblog.vercel.app/ogp.jpg`}
         />
+        
         <meta property="og:type" content="website" />
       </Head>
       <div className="main">

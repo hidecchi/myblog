@@ -1,9 +1,8 @@
 import "../styles/globals.css";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Head from "next/head";
-import React, { createContext } from "react";
 import { useRouter } from "next/router";
 import type { AppProps } from "next/app";
 

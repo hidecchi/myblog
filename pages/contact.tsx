@@ -15,7 +15,7 @@ export default function Contact(): JSX.Element {
         />
       </Head>
       <div className="main">
-        <h2 className="heading">{heading}</h2>
+        <h1 className="heading">{heading}</h1>
         <p>
           お仕事、その他のお問い合わせやご相談はこちらのフォームより承っております。
         </p>

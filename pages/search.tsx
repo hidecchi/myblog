@@ -38,7 +38,7 @@ export default function Search(): JSX.Element {
         <meta property="og:title" content="検索ページ | kitsune Blog" />
       </Head>
       <div className="main">
-        <h2 className="heading">{heading}</h2>
+        <h1 className="heading">{heading}</h1>
         <h3 className="search-text">キーワード：{router.query.keyword}</h3>
         {blogs ? <BlogCards blogs={blogs} /> : null}
       </div>

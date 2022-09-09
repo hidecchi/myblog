@@ -12,7 +12,7 @@ export default function profile(): JSX.Element {
         />
       </Head>
       <div className="main">
-        <h2 className="heading">{heading}</h2>
+        <h1 className="heading">{heading}</h1>
         <p>
           このブログの運営主のきつねと申します。
           <br />

@@ -52,7 +52,7 @@ export default function archive(blogs: any): JSX.Element {
   return (
     <>
       <div className="main">
-        <h2 className="heading">{heading}</h2>
+        <h1 className="heading">{heading}</h1>
         <BlogCards blogs={displays} />
         <Pager2 pagers={pagers} blogs={blogs} />
       </div>

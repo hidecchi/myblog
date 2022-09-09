@@ -40,7 +40,7 @@ export default function freelance(blogs: any): JSX.Element {
         <meta property="og:title" content="フリーランス | kitsune Blog" />
       </Head>
       <div className="main">
-        <h2 className="heading">{heading}</h2>
+        <h1 className="heading">{heading}</h1>
         <BlogCards blogs={displays} />
         <Pager pagers={pagers} />
       </div>
