@@ -126,7 +126,6 @@ export default function BlogDetails({ blog }: any): JSX.Element {
                 return <h2>{children}</h2>;
               },
               [BLOCKS.PARAGRAPH]: (node: any, children) => {
-                console.log(node);
                 if (node.content[0].marks.find((x: any) => x.type === "code")) {
                   return (
                     <SyntaxHighlighter language="javascript" style={foundation}>
