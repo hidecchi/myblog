@@ -274,7 +274,8 @@ code {
     font-size: 15px;
   }
   code {
-    font-size: 13px;
+    padding: 0.5em;
+    font-size: 15px;
   }
   .inner {
     padding-top: 20px;
