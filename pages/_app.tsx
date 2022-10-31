@@ -58,7 +58,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
           </div>
         </main>
         <footer>
-          <p className="copyright">Copyright kitsune All Right Reserved</p>
+          <p className="copyright">aCopyright kitsune All Right Reserved</p>
         </footer>
       </drawerContext.Provider>
     </>
