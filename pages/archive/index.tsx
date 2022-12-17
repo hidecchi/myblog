@@ -31,7 +31,7 @@ const Page: NextPage = ({ blogs, pageNumber, maxPageNumber }: any) => {
   const displays = blogs.slice(startNumber, startNumber + displayNumber);
   const heading = "アーカイブ";
   const pagers: number[] = [];
-  for (let i = 1; i <= blogs.maxPageNumber; i++) {
+  for (let i = 1; i <= maxPageNumber; i++) {
     pagers.push(i);
   }
 

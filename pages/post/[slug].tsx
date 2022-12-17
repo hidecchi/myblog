@@ -111,8 +111,6 @@ const Page: NextPage = ({ blog }: any) => {
             layout="fill"
             objectFit="cover"
             alt=""
-            width={850}
-            height={500}
             priority={true}
             sizes={"450px"}
           />
