@@ -1,4 +1,5 @@
 import Head from "next/head";
+import type { NextPage } from "next";
 import { createClient } from "contentful";
 import BlogCards from "../components/BlogCards";
 
@@ -19,7 +20,7 @@ export async function getStaticProps() {
   };
 }
 
-export default function Home({ blogs }: any): JSX.Element {
+const Page: NextPage = ({ blogs }: any) => {
   const heading = "新着記事";
   return (
     <>
@@ -34,7 +35,7 @@ export default function Home({ blogs }: any): JSX.Element {
           property="og:image"
           content={`https://kitsuneblog.vercel.app/ogp.jpg`}
         />
-        
+
         <meta property="og:type" content="website" />
       </Head>
       <div className="main">
@@ -43,4 +44,6 @@ export default function Home({ blogs }: any): JSX.Element {
       </div>
     </>
   );
-}
+};
+
+export default Page;

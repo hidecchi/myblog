@@ -6,7 +6,7 @@ import Image from "next/image";
 export default function BlogCards({ blogs }: any): JSX.Element {
   return (
     <ul className="blog-list">
-      {blogs.map((blog: any) => (
+      {blogs?.map((blog: any) => (
         <li key={blog.sys.id}>
           <div className="tag">
             {TagLink(blog) ? (

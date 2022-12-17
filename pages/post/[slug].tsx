@@ -1,4 +1,5 @@
 import Head from "next/head";
+import type { NextPage } from "next";
 import { createClient } from "contentful";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { BLOCKS, MARKS } from "@contentful/rich-text-types";
@@ -38,9 +39,8 @@ export async function getStaticProps({ params }: any) {
   };
 }
 
-export default function BlogDetails({ blog }: any): JSX.Element {
+const Page: NextPage = ({ blog }: any) => {
   const router = useRouter();
-  // console.log(router.query.name);
   const twitterShare = function (e: React.MouseEvent<HTMLAnchorElement>) {
     e.preventDefault();
     const url = location.href;
@@ -233,4 +233,6 @@ export default function BlogDetails({ blog }: any): JSX.Element {
       </style>
     </>
   );
-}
+};
+
+export default Page;

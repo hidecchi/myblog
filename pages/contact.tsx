@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import Head from "next/head";
+import type { NextPage } from "next";
 
-export default function Contact(): JSX.Element {
+const Page: NextPage = () => {
   const heading = "お問い合わせ";
   const [thanks, setThanks] = useState<string>("");
 
@@ -119,4 +120,6 @@ export default function Contact(): JSX.Element {
       </style>
     </>
   );
-}
+};
+
+export default Page;

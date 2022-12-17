@@ -1,4 +1,5 @@
 import Head from "next/head";
+import type { NextPage } from "next";
 import { createClient } from "contentful";
 import BlogCards from "../../../components/BlogCards";
 import Pager2 from "../../../modules/Pager2";
@@ -42,12 +43,12 @@ export async function getStaticProps({ params }: any) {
   };
 }
 
-export default function archive(blogs: any): JSX.Element {
-  const startNumber = displayNumber * (blogs.pageNumber - 1);
-  const displays = blogs.blogs.slice(startNumber, startNumber + displayNumber);
+const Page: NextPage = ({ blogs, pageNumber, maxPageNumber }: any) => {
+  const startNumber = displayNumber * (pageNumber - 1);
+  const displays = blogs.slice(startNumber, startNumber + displayNumber);
   const heading = "その他";
   const pagers: number[] = [];
-  for (let i = 1; i <= blogs.maxPageNumber; i++) {
+  for (let i = 1; i <= maxPageNumber; i++) {
     pagers.push(i);
   }
   return (
@@ -63,4 +64,6 @@ export default function archive(blogs: any): JSX.Element {
       </div>
     </>
   );
-}
+};
+
+export default Page;

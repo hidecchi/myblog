@@ -1,6 +1,7 @@
 import Head from "next/head";
+import type { NextPage } from "next";
 
-export default function profile(): JSX.Element {
+const Page: NextPage = () => {
   const heading = "プロフィール";
   return (
     <>
@@ -32,4 +33,6 @@ export default function profile(): JSX.Element {
       </div>
     </>
   );
-}
+};
+
+export default Page;

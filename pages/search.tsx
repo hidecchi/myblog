@@ -1,10 +1,11 @@
 import Head from "next/head";
+import type { NextPage } from "next";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { createClient } from "contentful";
 import BlogCards from "../components/BlogCards";
 
-export default function Search(): JSX.Element {
+const Page: NextPage = () => {
   const [blogs, setBlogs] = useState<{}[]>([]);
   const router = useRouter();
 
@@ -44,4 +45,6 @@ export default function Search(): JSX.Element {
       </div>
     </>
   );
-}
+};
+
+export default Page;
