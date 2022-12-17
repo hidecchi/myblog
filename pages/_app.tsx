@@ -44,7 +44,6 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
           href="https://fonts.googleapis.com/css2?family=Sawarabi+Mincho&display=auto"
           rel="stylesheet"
         ></link>
-        <meta name="robots" content="noindex,nofollow" />
         <meta property="og:site_name" content="kitsune Blog" />
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary_large_image" />
