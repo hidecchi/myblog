@@ -17,9 +17,9 @@ const Page: NextPage = () => {
         <p>
           このブログの運営主のきつねと申します。
           <br />
-          ホームページ制作の仕事を中心にフリーランスとして仕事をしつつ、個人開発でモダンJavaScriptも少し触っています。
+          フロントエンドが主戦場のエンジニアです。React、Next.jsを用いて仕事をすることが多く、WebサイトもWebアプリもどちらも開発しています。
           <br />
-          このブログはNext.js×Contentfulで制作いたしました。
+          このブログはNext.js×Contentfulで制作しました。
           <br />
           いわゆるHeadless CMSというものです。
           <br />
