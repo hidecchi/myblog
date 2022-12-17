@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import Image from "next/image";
 import React, { useContext } from "react";
-import { drawerContext } from "../pages/_app";
+import { drawerContext } from "pages/_app";
 
 export default function Header(): JSX.Element {
   const { drawerOpen, setDrawerOpen } = useContext(drawerContext);

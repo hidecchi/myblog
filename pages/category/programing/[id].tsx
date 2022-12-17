@@ -1,8 +1,8 @@
 import Head from "next/head";
 import type { NextPage } from "next";
 import { createClient } from "contentful";
-import BlogCards from "../../../components/BlogCards";
-import Pager2 from "../../../modules/Pager2";
+import BlogCards from "components/BlogCards";
+import Pager2 from "modules/Pager2";
 
 const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID as string,

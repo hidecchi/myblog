@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { NextPage } from "next";
 import { createClient } from "contentful";
-import BlogCards from "../components/BlogCards";
+import BlogCards from "components/BlogCards";
 
 export async function getStaticProps() {
   const client = createClient({

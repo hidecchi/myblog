@@ -3,7 +3,7 @@ import type { NextPage } from "next";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { createClient } from "contentful";
-import BlogCards from "../components/BlogCards";
+import BlogCards from "components/BlogCards";
 
 const Page: NextPage = () => {
   const [blogs, setBlogs] = useState<{}[]>([]);

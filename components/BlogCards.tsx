@@ -1,6 +1,6 @@
 import Link from "next/link";
-import TagLink from "../functions/tagLink";
-import TagOutput from "../functions/tagOutput";
+import TagLink from "functions/tagLink";
+import TagOutput from "functions/tagOutput";
 import Image from "next/image";
 
 export default function BlogCards({ blogs }: any): JSX.Element {

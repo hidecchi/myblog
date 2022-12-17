@@ -1,6 +1,6 @@
-import "../styles/globals.css";
-import Header from "../components/Header";
-import Sidebar from "../components/Sidebar";
+import "styles/globals.css";
+import Header from "components/Header";
+import Sidebar from "components/Sidebar";
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";

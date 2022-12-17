@@ -1,8 +1,8 @@
 import Head from "next/head";
 import type { NextPage } from "next";
 import { createClient } from "contentful";
-import BlogCards from "../../components/BlogCards";
-import Pager2 from "../../modules/Pager2";
+import BlogCards from "components/BlogCards";
+import Pager2 from "modules/Pager2";
 
 const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID as string,
@@ -52,6 +52,10 @@ const Page: NextPage = ({ blogs, pageNumber, maxPageNumber }: any) => {
 
   return (
     <>
+      <Head>
+        <title>アーカイブ | kitsune Blog</title>
+        <meta property="og:title" content="アーカイブ | kitsune Blog" />
+      </Head>
       <div className="main">
         <h1 className="heading">{heading}</h1>
         <BlogCards blogs={displays} />
