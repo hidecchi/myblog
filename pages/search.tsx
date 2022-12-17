@@ -4,9 +4,11 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { createClient } from "contentful";
 import BlogCards from "components/BlogCards";
+import { Entry } from "contentful";
+import { IBlogFields } from "../@types/generated/contentful";
 
 const Page: NextPage = () => {
-  const [blogs, setBlogs] = useState<{}[]>([]);
+  const [blogs, setBlogs] = useState<Entry<IBlogFields>[]>([]);
   const router = useRouter();
 
   async function csrFetchData() {
@@ -14,7 +16,7 @@ const Page: NextPage = () => {
       space: process.env.CONTENTFUL_SPACE_ID as string,
       accessToken: process.env.CONTENTFUL_ACCESS_TOKEN as string,
     });
-    const res = await client.getEntries({
+    const res = await client.getEntries<IBlogFields>({
       content_type: "blog",
       order: "-sys.createdAt",
       query: router.query.keyword,

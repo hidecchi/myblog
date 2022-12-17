@@ -1,10 +1,15 @@
 import Link from "next/link";
 
-export default function Pager({ pagers }: { pagers: number[] }) {
+type Props = {
+  pagers: number[];
+  pageNumber: number;
+};
+
+const Pager = ({ pagers, pageNumber }: Props): JSX.Element => {
   return (
     <ul className="pager">
       {pagers.map((value) => (
-        <li key={value} className={value == 1 ? "active" : ""}>
+        <li key={value} className={value === pageNumber ? "active" : ""}>
           <Link href={`/archive/${value}`}>
             <a>{value}</a>
           </Link>
@@ -12,4 +17,6 @@ export default function Pager({ pagers }: { pagers: number[] }) {
       ))}
     </ul>
   );
-}
+};
+
+export default Pager;

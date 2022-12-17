@@ -1,14 +1,15 @@
 import Head from "next/head";
-import type { NextPage } from "next";
+import type { NextPage, InferGetStaticPropsType } from "next";
 import { createClient } from "contentful";
 import BlogCards from "components/BlogCards";
+import { IBlogFields } from "../@types/generated/contentful";
 
-export async function getStaticProps() {
+export const getStaticProps = async () => {
   const client = createClient({
     space: process.env.CONTENTFUL_SPACE_ID as string,
     accessToken: process.env.CONTENTFUL_ACCESS_TOKEN as string,
   });
-  const res = await client.getEntries({
+  const res = await client.getEntries<IBlogFields>({
     content_type: "blog",
     order: "-sys.createdAt",
     limit: 6,
@@ -18,9 +19,11 @@ export async function getStaticProps() {
       blogs: res.items,
     },
   };
-}
+};
 
-const Page: NextPage = ({ blogs }: any) => {
+type Props = InferGetStaticPropsType<typeof getStaticProps>;
+
+const Page: NextPage<Props> = ({ blogs }) => {
   const heading = "新着記事";
   return (
     <>

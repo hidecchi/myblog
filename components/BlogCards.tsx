@@ -1,18 +1,22 @@
 import Link from "next/link";
-import TagLink from "functions/tagLink";
-import TagOutput from "functions/tagOutput";
 import Image from "next/image";
+import getTagLink from "functions/getTagLink";
+import getTagName from "functions/getTagName";
+import { Entry } from "contentful";
+import { IBlogFields } from "../@types/generated/contentful";
 
-export default function BlogCards({ blogs }: any): JSX.Element {
+type Props = { blogs: Entry<IBlogFields>[] };
+
+const BlogCards = ({ blogs }: Props): JSX.Element => {
   return (
     <ul className="blog-list">
-      {blogs?.map((blog: any) => (
+      {blogs.map((blog) => (
         <li key={blog.sys.id}>
           <div className="tag">
-            {TagLink(blog) ? (
-              <Link href={TagLink(blog)}>
+            {getTagLink(blog) ? (
+              <Link href={getTagLink(blog)}>
                 <a className={blog.metadata.tags[0].sys.id}>
-                  {TagOutput(blog)}
+                  {getTagName(blog)}
                 </a>
               </Link>
             ) : (
@@ -23,7 +27,7 @@ export default function BlogCards({ blogs }: any): JSX.Element {
             <a>
               <p className="thumbnail">
                 <Image
-                  src={"https:" + blog.fields.thumbnail.fields.file.url}
+                  src={"https:" + blog.fields.thumbnail?.fields.file.url}
                   layout="fill"
                   objectFit="cover"
                   alt=""
@@ -32,7 +36,7 @@ export default function BlogCards({ blogs }: any): JSX.Element {
               </p>
               <h2>{blog.fields.title}</h2>
               <p className="date">
-                {blog.fields.date?.substr(0, 10).replace(/-/g, ".")}
+                {blog.fields.date?.substring(0, 10).replace(/-/g, ".")}
               </p>
             </a>
           </Link>
@@ -42,4 +46,6 @@ export default function BlogCards({ blogs }: any): JSX.Element {
       <li></li>
     </ul>
   );
-}
+};
+
+export default BlogCards;

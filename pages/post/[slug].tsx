@@ -1,13 +1,17 @@
 import Head from "next/head";
-import type { NextPage } from "next";
-import { createClient } from "contentful";
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import { BLOCKS, MARKS } from "@contentful/rich-text-types";
+import type {
+  NextPage,
+  GetStaticPropsContext,
+  InferGetStaticPropsType,
+} from "next";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import { createClient } from "contentful";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { BLOCKS } from "@contentful/rich-text-types";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { foundation } from "react-syntax-highlighter/dist/cjs/styles/hljs";
-import React from "react";
+import { IBlogFields } from "../../@types/generated/contentful";
 
 const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID as string,
@@ -15,8 +19,10 @@ const client = createClient({
 });
 
 export const getStaticPaths = async () => {
-  const res: any = await client.getEntries({ content_type: "blog" });
-  const paths = res.items.map((item: any) => {
+  const res = await client.getEntries<IBlogFields>({
+    content_type: "blog",
+  });
+  const paths = res.items.map((item) => {
     return {
       params: { slug: item.fields.slug },
     };
@@ -27,19 +33,21 @@ export const getStaticPaths = async () => {
   };
 };
 
-export async function getStaticProps({ params }: any) {
-  const items = await client.getEntries({
+export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
+  const res = await client.getEntries<IBlogFields>({
     content_type: "blog",
-    "fields.slug": params.slug,
+    "fields.slug": params?.slug,
   });
   return {
     props: {
-      blog: items.items[0],
+      blog: res.items[0],
     },
   };
-}
+};
 
-const Page: NextPage = ({ blog }: any) => {
+type Props = InferGetStaticPropsType<typeof getStaticProps>;
+
+const Page: NextPage<Props> = ({ blog }) => {
   const router = useRouter();
   const twitterShare = function (e: React.MouseEvent<HTMLAnchorElement>) {
     e.preventDefault();
@@ -86,7 +94,7 @@ const Page: NextPage = ({ blog }: any) => {
         />
         <meta
           property="og:image"
-          content={"https:" + blog.fields.thumbnail.fields.file.url}
+          content={"https:" + blog.fields.thumbnail?.fields.file.url}
         />
         <meta property="og:type" content="article" />
       </Head>
@@ -107,7 +115,7 @@ const Page: NextPage = ({ blog }: any) => {
         </div>
         <p className="thumbnail">
           <Image
-            src={"https:" + blog.fields.thumbnail.fields.file.url}
+            src={"https:" + blog.fields.thumbnail?.fields.file.url}
             layout="fill"
             objectFit="cover"
             alt=""

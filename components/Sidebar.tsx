@@ -3,20 +3,18 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import Image from "next/image";
 
-export default function Sidebar(): JSX.Element {
+const Sidebar = (): JSX.Element => {
   const router = useRouter();
   const [input, setInput] = useState<string>("");
   const search = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    //未入力の時
-    if (!input) {
-      return;
-    }
+    if (!input) return;
     router.push({
       pathname: "/search", //URL
       query: { keyword: input }, //検索クエリ
     });
   };
+
   return (
     <aside className="sidebar">
       <div>
@@ -192,4 +190,6 @@ export default function Sidebar(): JSX.Element {
       </style>
     </aside>
   );
-}
+};
+
+export default Sidebar;

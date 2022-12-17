@@ -1,8 +1,9 @@
 import Head from "next/head";
-import type { NextPage } from "next";
+import type { NextPage, InferGetStaticPropsType } from "next";
 import { createClient } from "contentful";
 import BlogCards from "components/BlogCards";
-import Pager from "modules/Pager";
+import Pager from "components/Pager";
+import { IBlogFields } from "../../../@types/generated/contentful";
 
 const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID as string,
@@ -10,8 +11,8 @@ const client = createClient({
 });
 const displayNumber: number = 6;
 
-export async function getStaticProps() {
-  const res = await client.getEntries({
+export const getStaticProps = async () => {
+  const res = await client.getEntries<IBlogFields>({
     content_type: "blog",
     order: "-sys.createdAt",
     "metadata.tags.sys.id[all]": "other",
@@ -24,9 +25,10 @@ export async function getStaticProps() {
       maxPageNumber: maxPageNumber,
     },
   };
-}
+};
+type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
-const Page: NextPage = ({ blogs, pageNumber, maxPageNumber }: any) => {
+const Page: NextPage<Props> = ({ blogs, pageNumber, maxPageNumber }) => {
   const startNumber: number = displayNumber * (pageNumber - 1);
   const displays = blogs.slice(startNumber, startNumber + displayNumber);
   const heading = "その他";
@@ -43,7 +45,7 @@ const Page: NextPage = ({ blogs, pageNumber, maxPageNumber }: any) => {
       <div className="main">
         <h1 className="heading">{heading}</h1>
         <BlogCards blogs={displays} />
-        <Pager pagers={pagers} />
+        <Pager pagers={pagers} pageNumber={pageNumber} />
       </div>
     </>
   );
