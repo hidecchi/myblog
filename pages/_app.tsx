@@ -165,6 +165,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
             font-size: 48px;
             letter-spacing: 0.16em;
             font-family: "Sawarabi Mincho", sans-serif;
+            opacity: 0;
           }
           .mr {
             margin-right: 0.5em;
