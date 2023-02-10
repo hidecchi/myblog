@@ -163,7 +163,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
           .loading-text {
             font-size: 48px;
             letter-spacing: 0.16em;
-            font-family: "Sawarabi Mincho", sans-serif;
+
             opacity: 0;
           }
           .mr {
