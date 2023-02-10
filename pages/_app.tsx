@@ -159,6 +159,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
             background-color: #f7f7f7;
             transition: 0.3s;
             z-index: 3000;
+            perspective: 500px;
           }
           .loading-text {
             font-size: 48px;
