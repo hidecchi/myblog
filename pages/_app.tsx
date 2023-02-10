@@ -36,7 +36,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
         y: "random(-200,200)",
         rotationX: "random(-90,90)",
         rotationY: "random(-90,90)",
-        // rotationZ: "random(-90,90)",
+        rotationZ: "random(-90,90)",
         opacity: 0,
         color: `hsl(${gsap.utils.random(0, 360, 1)}, 90%, 60%)`,
       });
@@ -48,7 +48,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
         y: 0,
         rotationX: 0,
         rotationY: 0,
-        // rotationZ: 0,
+        rotationZ: 0,
         opacity: 1,
         duration: 3,
         color: "#333",
@@ -163,8 +163,9 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
           .loading-text {
             font-size: 48px;
             letter-spacing: 0.16em;
-
+            font-family: "Sawarabi Mincho", sans-serif;
             opacity: 0;
+            will-change: filter;
           }
           .mr {
             margin-right: 0.5em;
