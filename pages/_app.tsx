@@ -34,9 +34,9 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
       gsap.set(item.current, {
         x: "random(-200,200)",
         y: "random(-200,200)",
-        rotationX: "random(-90,90)",
-        rotationY: "random(-90,90)",
-        rotationZ: "random(-90,90)",
+        // rotationX: "random(-90,90)",
+        // rotationY: "random(-90,90)",
+        // rotationZ: "random(-90,90)",
         opacity: 0,
         color: `hsl(${gsap.utils.random(0, 360, 1)}, 90%, 60%)`,
       });
@@ -46,9 +46,9 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
       tl.to(".loading-text", {
         x: 0,
         y: 0,
-        rotationX: 0,
-        rotationY: 0,
-        rotationZ: 0,
+        // rotationX: 0,
+        // rotationY: 0,
+        // rotationZ: 0,
         opacity: 1,
         duration: 3,
         color: "#333",
