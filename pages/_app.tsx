@@ -161,7 +161,6 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
             z-index: 3000;
           }
           .loading-text {
-            display: inline-block;
             font-size: 48px;
             letter-spacing: 0.16em;
             font-family: "Sawarabi Mincho", sans-serif;
