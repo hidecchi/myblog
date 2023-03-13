@@ -36,6 +36,20 @@ const Page: NextPage = () => {
         </p>
         <h2 className="heading heading2">制作実績</h2>
         <a
+          className="image-wrap"
+          href="https://fukuokatenpo.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Image
+            src="/tenant.png"
+            alt="飲食テナントナビ"
+            width={1200}
+            height={638}
+            className="image"
+          />
+        </a>
+        <a
           href="https://rendezvous-shisha.com/"
           className="image-wrap"
           target="_blank"
