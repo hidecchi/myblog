@@ -36,7 +36,7 @@ const Page: NextPage<Props> = ({ blogs }) => {
         <meta property="og:title" content="kitsune Blog" />
         <meta
           property="og:image"
-          content={`https://kitsuneblog.vercel.app/ogp.jpg`}
+          content={`https://kitsuneblog.vercel.app/ogp.png`}
         />
 
         <meta property="og:type" content="website" />
