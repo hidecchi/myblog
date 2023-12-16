@@ -24,10 +24,10 @@ const Page: NextPage = () => {
     setBlogs(res.items);
   }
 
-  useEffect(() => {
-    if (!router.isReady) return;
-    csrFetchData();
-  }, [router.query.keyword]);
+  // useEffect(() => {
+  //   if (!router.isReady) return;
+  //   csrFetchData();
+  // }, [router.query.keyword]);
 
   const heading = "検索結果";
   return (

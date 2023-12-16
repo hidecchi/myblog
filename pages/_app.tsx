@@ -107,7 +107,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
           rel="stylesheet"
         />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
+        {/* <link
           rel="preconnect"
           href="https://fonts.gstatic.com"
           crossOrigin="true"
@@ -115,7 +115,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
         <link
           href="https://fonts.googleapis.com/css2?family=Sawarabi+Mincho&display=auto"
           rel="stylesheet"
-        ></link>
+        ></link> */}
         <meta property="og:site_name" content="kitsune Blog" />
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary_large_image" />
