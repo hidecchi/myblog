@@ -14,31 +14,30 @@ const BlogCards = ({ blogs }: Props): JSX.Element => {
         <li key={blog.sys.id}>
           <div className="tag">
             {getTagLink(blog) ? (
-              <Link href={getTagLink(blog)}>
-                <a className={blog.metadata.tags[0].sys.id}>
-                  {getTagName(blog)}
-                </a>
+              <Link
+                href={getTagLink(blog)}
+                className={blog.metadata.tags[0].sys.id}
+              >
+                {getTagName(blog)}
               </Link>
             ) : (
               ""
             )}
           </div>
-          <Link href={`/post/${blog.fields.slug}`}>
-            <a>
-              <p className="thumbnail">
-                <Image
-                  src={"https:" + blog.fields.thumbnail?.fields.file.url}
-                  layout="fill"
-                  objectFit="cover"
-                  alt=""
-                  sizes={"300px"}
-                />
-              </p>
-              <h2>{blog.fields.title}</h2>
-              <p className="date">
-                {blog.fields.date?.substring(0, 10).replace(/-/g, ".")}
-              </p>
-            </a>
+          <Link href={`/post/${blog.fields.slug}`} passHref>
+            <p className="thumbnail">
+              <Image
+                src={"https:" + blog.fields.thumbnail?.fields.file.url}
+                layout="fill"
+                objectFit="cover"
+                alt=""
+                sizes={"300px"}
+              />
+            </p>
+            <h2>{blog.fields.title}</h2>
+            <p className="date">
+              {blog.fields.date?.substring(0, 10).replace(/-/g, ".")}
+            </p>
           </Link>
         </li>
       ))}
