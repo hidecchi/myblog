@@ -429,3 +429,34 @@ code {
     font-size: 3.8vw;
   }
 }
+
+.loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f7f7f7;
+  transition: 0.3s;
+  z-index: 3000;
+  perspective: 500px;
+}
+.loading-text {
+  font-size: 48px;
+  letter-spacing: 0.16em;
+  font-family: "Sawarabi Mincho", sans-serif;
+  opacity: 0;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.mr {
+  margin-right: 0.5em;
+}
+@media screen and (max-width: 540px) {
+  .loading-text {
+    font-size: 9vw;
+  }
+}
