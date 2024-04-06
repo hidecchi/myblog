@@ -75,21 +75,19 @@ const Loading = (): JSX.Element => {
   });
 
   return (
-    <>
-      <div className="loading">
-        {LOADING_TEXT.split("").map((text, index) => {
-          return (
-            <span
-              className={text === "e" ? "loading-text mr" : "loading-text"}
-              key={index}
-              ref={loadingTextRefs.current[index]}
-            >
-              {text}
-            </span>
-          );
-        })}
-      </div>
-    </>
+    <div className="loading">
+      {LOADING_TEXT.split("").map((text, index) => {
+        return (
+          <span
+            className={text === "e" ? "loading-text mr" : "loading-text"}
+            key={index}
+            ref={loadingTextRefs.current[index]}
+          >
+            {text}
+          </span>
+        );
+      })}
+    </div>
   );
 };
 
