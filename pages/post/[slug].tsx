@@ -52,7 +52,7 @@ const Page: NextPage<Props> = ({ blog }) => {
   const twitterShare = function (e: React.MouseEvent<HTMLAnchorElement>) {
     e.preventDefault();
     const url = location.href;
-    const shareUrl = `https://twitter.com/share?url=${url}&text=${blog.fields.title}`;
+    const shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${blog.fields.title}`;
     window.open(shareUrl, "_blank");
   };
   const facebookShare = function (e: React.MouseEvent<HTMLAnchorElement>) {
