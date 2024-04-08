@@ -77,6 +77,14 @@ const Page: NextPage = () => {
             className="image"
           />
         </a>
+        <img
+          src="abc.jpg"
+          alt=""
+          onError={(event) => {
+            event.currentTarget.onerror = null;
+            event.currentTarget.src = "/ichidai.png";
+          }}
+        />
       </div>
       <style jsx>
         {`
