@@ -80,16 +80,16 @@ const Page: NextPage = () => {
         <img
           src="abc.jpg"
           alt=""
-          style={{ maxWidth: "100%" }}
+          style={{ maxWidth: "100%", display: "block" }}
           onError={(event) => {
             // event.currentTarget.onerror = null;
             event.currentTarget.src = "/ichidai.png";
           }}
         />
         <img
-          src="/randevouz.jpg"
+          src="/test.jpg"
           alt=""
-          style={{ maxWidth: "100%", minHeight: "20vw" }}
+          style={{ maxWidth: "100%", minHeight: "20vw", display: "block" }}
           // onError={(event) => {
           //   // event.currentTarget.onerror = null;
           //   event.currentTarget.src = "/ichidai.png";
@@ -98,7 +98,7 @@ const Page: NextPage = () => {
         <img
           src="abc.jpg"
           alt=""
-          style={{ maxWidth: "100%", minHeight: "20vw" }}
+          style={{ maxWidth: "100%", minHeight: "20vw", display: "block" }}
           onError={(event) => {
             event.currentTarget.onerror = null;
             event.currentTarget.src = "/ichidai.png";
@@ -107,7 +107,7 @@ const Page: NextPage = () => {
         <img
           src="abc.jpg"
           alt=""
-          style={{ maxWidth: "100%", minHeight: "20vw" }}
+          style={{ maxWidth: "100%", minHeight: "20vw", display: "block" }}
           onError={(event: any) => {
             event.target.src = "/tenant.png";
           }}
