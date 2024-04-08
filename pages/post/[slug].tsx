@@ -1,12 +1,17 @@
 import Head from "next/head";
-import { createClient } from "contentful";
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import { BLOCKS, MARKS } from "@contentful/rich-text-types";
+import type {
+  NextPage,
+  GetStaticPropsContext,
+  InferGetStaticPropsType,
+} from "next";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import { createClient } from "contentful";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { BLOCKS } from "@contentful/rich-text-types";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { foundation } from "react-syntax-highlighter/dist/cjs/styles/hljs";
-import React from "react";
+import { IBlogFields } from "../../@types/generated/contentful";
 
 const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID as string,
@@ -14,8 +19,10 @@ const client = createClient({
 });
 
 export const getStaticPaths = async () => {
-  const res: any = await client.getEntries({ content_type: "blog" });
-  const paths = res.items.map((item: any) => {
+  const res = await client.getEntries<IBlogFields>({
+    content_type: "blog",
+  });
+  const paths = res.items.map((item) => {
     return {
       params: { slug: item.fields.slug },
     };
@@ -26,25 +33,26 @@ export const getStaticPaths = async () => {
   };
 };
 
-export async function getStaticProps({ params }: any) {
-  const items = await client.getEntries({
+export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
+  const res = await client.getEntries<IBlogFields>({
     content_type: "blog",
-    "fields.slug": params.slug,
+    "fields.slug": params?.slug,
   });
   return {
     props: {
-      blog: items.items[0],
+      blog: res.items[0],
     },
   };
-}
+};
 
-export default function BlogDetails({ blog }: any): JSX.Element {
+type Props = InferGetStaticPropsType<typeof getStaticProps>;
+
+const Page: NextPage<Props> = ({ blog }) => {
   const router = useRouter();
-  // console.log(router.query.name);
   const twitterShare = function (e: React.MouseEvent<HTMLAnchorElement>) {
     e.preventDefault();
     const url = location.href;
-    const shareUrl = `https://twitter.com/share?url=${url}&text=${blog.fields.title}`;
+    const shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${blog.fields.title}`;
     window.open(shareUrl, "_blank");
   };
   const facebookShare = function (e: React.MouseEvent<HTMLAnchorElement>) {
@@ -86,7 +94,7 @@ export default function BlogDetails({ blog }: any): JSX.Element {
         />
         <meta
           property="og:image"
-          content={"https:" + blog.fields.thumbnail.fields.file.url}
+          content={"https:" + blog.fields.thumbnail?.fields.file.url}
         />
         <meta property="og:type" content="article" />
       </Head>
@@ -107,12 +115,10 @@ export default function BlogDetails({ blog }: any): JSX.Element {
         </div>
         <p className="thumbnail">
           <Image
-            src={"https:" + blog.fields.thumbnail.fields.file.url}
+            src={"https:" + blog.fields.thumbnail?.fields.file.url}
             layout="fill"
             objectFit="cover"
             alt=""
-            width={850}
-            height={500}
             priority={true}
             sizes={"450px"}
           />
@@ -233,4 +239,6 @@ export default function BlogDetails({ blog }: any): JSX.Element {
       </style>
     </>
   );
-}
+};
+
+export default Page;

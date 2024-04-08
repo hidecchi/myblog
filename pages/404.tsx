@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import type { NextPage } from "next";
 
-export default function NotFound(): JSX.Element {
+const Page: NextPage = () => {
   const router = useRouter();
   const redirection = function () {
     setTimeout(() => {
@@ -19,4 +20,6 @@ export default function NotFound(): JSX.Element {
       </p>
     </div>
   );
-}
+};
+
+export default Page;

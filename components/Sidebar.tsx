@@ -3,20 +3,18 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import Image from "next/image";
 
-export default function Sidebar(): JSX.Element {
-  const router = useRouter(); //ルーターの取得
+const Sidebar = (): JSX.Element => {
+  const router = useRouter();
   const [input, setInput] = useState<string>("");
-  const search = (e: React.SyntheticEvent) => {
+  const search = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    //未入力の時
-    if (!input) {
-      return;
-    }
+    if (!input) return;
     router.push({
       pathname: "/search", //URL
       query: { keyword: input }, //検索クエリ
     });
   };
+
   return (
     <aside className="sidebar">
       <div>
@@ -40,24 +38,14 @@ export default function Sidebar(): JSX.Element {
         </ul>
       </div>
       <form className="search-form" onSubmit={search}>
-        {/* 入力項目 */}
         <input
           type="text"
           placeholder="Search"
           value={input}
           onChange={(e) => setInput(e.target.value)} /*変更時inputに値をセット*/
         />
-
-        {/* ボタン */}
         <button type="submit" disabled={!input}>
-          {" "}
-          {/*入力項目が未入力の場合、非活性*/}
-          <Image
-            src="/search.png"
-            alt="Picture of the author"
-            width={18}
-            height={14}
-          />
+          <Image src="/search.png" alt="" width={18} height={14} />
         </button>
       </form>
       <style jsx>
@@ -197,4 +185,6 @@ export default function Sidebar(): JSX.Element {
       </style>
     </aside>
   );
-}
+};
+
+export default Sidebar;

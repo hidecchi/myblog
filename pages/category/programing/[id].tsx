@@ -1,7 +1,13 @@
 import Head from "next/head";
+import type {
+  NextPage,
+  GetStaticPropsContext,
+  InferGetStaticPropsType,
+} from "next";
 import { createClient } from "contentful";
-import BlogCards from "../../../components/BlogCards";
-import Pager2 from "../../../modules/Pager2";
+import BlogCards from "components/BlogCards";
+import Pager from "components/Pager";
+import { IBlogFields } from "../../../@types/generated/contentful";
 
 const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID as string,
@@ -10,8 +16,8 @@ const client = createClient({
 const displayNumber: number = 6;
 
 export const getStaticPaths = async () => {
-  const paths = [];
-  const res = await client.getEntries({
+  const paths: { params: { id: string } }[] = [];
+  const res = await client.getEntries<IBlogFields>({
     content_type: "blog",
     order: "-sys.createdAt",
     "metadata.tags.sys.id[all]": "programing",
@@ -26,8 +32,8 @@ export const getStaticPaths = async () => {
   };
 };
 
-export async function getStaticProps({ params }: any) {
-  const res = await client.getEntries({
+export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
+  const res = await client.getEntries<IBlogFields>({
     content_type: "blog",
     order: "-sys.createdAt",
     "metadata.tags.sys.id[all]": "programing",
@@ -36,18 +42,20 @@ export async function getStaticProps({ params }: any) {
   return {
     props: {
       blogs: res.items,
-      pageNumber: Number(params.id),
+      pageNumber: Number(params?.id),
       maxPageNumber: maxPageNumber,
     },
   };
-}
+};
 
-export default function archive(blogs: any): JSX.Element {
-  const startNumber = displayNumber * (blogs.pageNumber - 1);
-  const displays = blogs.blogs.slice(startNumber, startNumber + displayNumber);
+type Props = InferGetStaticPropsType<typeof getStaticProps>;
+
+const Page: NextPage<Props> = ({ blogs, pageNumber, maxPageNumber }) => {
+  const startNumber = displayNumber * (pageNumber - 1);
+  const displays = blogs.slice(startNumber, startNumber + displayNumber);
   const heading = "プログラミング";
   const pagers: number[] = [];
-  for (let i = 1; i <= blogs.maxPageNumber; i++) {
+  for (let i = 1; i <= maxPageNumber; i++) {
     pagers.push(i);
   }
   return (
@@ -59,8 +67,10 @@ export default function archive(blogs: any): JSX.Element {
       <div className="main">
         <h1 className="heading">{heading}</h1>
         <BlogCards blogs={displays} />
-        <Pager2 pagers={pagers} blogs={blogs} />
+        <Pager pagers={pagers} pageNumber={pageNumber} />
       </div>
     </>
   );
-}
+};
+
+export default Page;

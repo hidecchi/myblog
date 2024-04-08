@@ -1,13 +1,15 @@
 import Head from "next/head";
+import type { NextPage, InferGetStaticPropsType } from "next";
 import { createClient } from "contentful";
-import BlogCards from "../components/BlogCards";
+import BlogCards from "components/BlogCards";
+import { IBlogFields } from "../@types/generated/contentful";
 
-export async function getStaticProps() {
+export const getStaticProps = async () => {
   const client = createClient({
     space: process.env.CONTENTFUL_SPACE_ID as string,
     accessToken: process.env.CONTENTFUL_ACCESS_TOKEN as string,
   });
-  const res = await client.getEntries({
+  const res = await client.getEntries<IBlogFields>({
     content_type: "blog",
     order: "-sys.createdAt",
     limit: 6,
@@ -17,9 +19,11 @@ export async function getStaticProps() {
       blogs: res.items,
     },
   };
-}
+};
 
-export default function Home({ blogs }: any): JSX.Element {
+type Props = InferGetStaticPropsType<typeof getStaticProps>;
+
+const Page: NextPage<Props> = ({ blogs }) => {
   const heading = "新着記事";
   return (
     <>
@@ -32,9 +36,9 @@ export default function Home({ blogs }: any): JSX.Element {
         <meta property="og:title" content="kitsune Blog" />
         <meta
           property="og:image"
-          content={`https://kitsuneblog.vercel.app/ogp.jpg`}
+          content={`https://kitsuneblog.vercel.app/ogp.png`}
         />
-        
+
         <meta property="og:type" content="website" />
       </Head>
       <div className="main">
@@ -43,4 +47,6 @@ export default function Home({ blogs }: any): JSX.Element {
       </div>
     </>
   );
-}
+};
+
+export default Page;

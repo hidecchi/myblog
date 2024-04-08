@@ -1,11 +1,14 @@
 import Head from "next/head";
+import type { NextPage } from "next";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { createClient } from "contentful";
-import BlogCards from "../components/BlogCards";
+import BlogCards from "components/BlogCards";
+import { Entry } from "contentful";
+import { IBlogFields } from "../@types/generated/contentful";
 
-export default function Search(): JSX.Element {
-  const [blogs, setBlogs] = useState<{}[]>([]);
+const Page: NextPage = () => {
+  const [blogs, setBlogs] = useState<Entry<IBlogFields>[]>([]);
   const router = useRouter();
 
   async function csrFetchData() {
@@ -13,7 +16,7 @@ export default function Search(): JSX.Element {
       space: process.env.CONTENTFUL_SPACE_ID as string,
       accessToken: process.env.CONTENTFUL_ACCESS_TOKEN as string,
     });
-    const res = await client.getEntries({
+    const res = await client.getEntries<IBlogFields>({
       content_type: "blog",
       order: "-sys.createdAt",
       query: router.query.keyword,
@@ -44,4 +47,6 @@ export default function Search(): JSX.Element {
       </div>
     </>
   );
-}
+};
+
+export default Page;

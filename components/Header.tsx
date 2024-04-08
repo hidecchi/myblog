@@ -3,9 +3,9 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import Image from "next/image";
 import React, { useContext } from "react";
-import { drawerContext } from "../pages/_app";
+import { drawerContext } from "pages/_app";
 
-export default function Header(): JSX.Element {
+const Header = (): JSX.Element => {
   const { drawerOpen, setDrawerOpen } = useContext(drawerContext);
   const toggleDrawer = function () {
     drawerOpen ? setDrawerOpen(false) : setDrawerOpen(true);
@@ -15,10 +15,7 @@ export default function Header(): JSX.Element {
   const [input, setInput] = useState<string>("");
   const search = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    //未入力の時
-    if (!input) {
-      return;
-    }
+    if (!input) return;
     router.push({
       pathname: "/search", //URL
       query: { keyword: input }, //検索クエリ
@@ -262,4 +259,6 @@ export default function Header(): JSX.Element {
       </style>
     </header>
   );
-}
+};
+
+export default Header;
