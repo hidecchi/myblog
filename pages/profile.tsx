@@ -89,7 +89,7 @@ const Page: NextPage = () => {
         <img
           src="/randevouz.jpg"
           alt=""
-          style={{ maxWidth: "100%" }}
+          style={{ maxWidth: "100%", minHeight: "20vw" }}
           // onError={(event) => {
           //   // event.currentTarget.onerror = null;
           //   event.currentTarget.src = "/ichidai.png";
@@ -98,7 +98,7 @@ const Page: NextPage = () => {
         <img
           src="abc.jpg"
           alt=""
-          style={{ maxWidth: "100%" }}
+          style={{ maxWidth: "100%", minHeight: "20vw" }}
           onError={(event) => {
             event.currentTarget.onerror = null;
             event.currentTarget.src = "/ichidai.png";
@@ -107,7 +107,7 @@ const Page: NextPage = () => {
         <img
           src="abc.jpg"
           alt=""
-          style={{ maxWidth: "100%" }}
+          style={{ maxWidth: "100%", minHeight: "20vw" }}
           onError={(event: any) => {
             event.target.src = "/tenant.png";
           }}
