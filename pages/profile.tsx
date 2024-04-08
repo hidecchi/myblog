@@ -81,7 +81,7 @@ const Page: NextPage = () => {
           src="abc.jpg"
           alt=""
           onError={(event) => {
-            event.currentTarget.onerror = null;
+            // event.currentTarget.onerror = null;
             event.currentTarget.src = "/ichidai.png";
           }}
         />
