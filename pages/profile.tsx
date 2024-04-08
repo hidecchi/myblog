@@ -101,6 +101,7 @@ const Page: NextPage = () => {
             event.currentTarget.onerror = null;
             event.currentTarget.src = "/tenant.png";
           }}
+          unoptimized
         />
       </div>
       <style jsx>
