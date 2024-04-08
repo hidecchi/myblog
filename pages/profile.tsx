@@ -70,7 +70,7 @@ const Page: NextPage = () => {
           rel="noopener noreferrer"
         >
           <Image
-            src="abc.png"
+            src="/ichidai.png"
             alt="株式会社一代"
             width={1200}
             height={638}
@@ -86,34 +86,20 @@ const Page: NextPage = () => {
           alt=""
           style={{ maxWidth: "100%", display: "block" }}
           onError={(event) => {
-            // event.currentTarget.onerror = null;
-            event.currentTarget.src = "/ichidai.png";
-          }}
-        />
-        <img
-          src="/test.jpg"
-          alt=""
-          style={{ maxWidth: "100%", minHeight: "20vw", display: "block" }}
-          // onError={(event) => {
-          //   // event.currentTarget.onerror = null;
-          //   event.currentTarget.src = "/ichidai.png";
-          // }}
-        />
-        <img
-          src="abc.jpg"
-          alt=""
-          style={{ maxWidth: "100%", minHeight: "20vw", display: "block" }}
-          onError={(event) => {
             event.currentTarget.onerror = null;
             event.currentTarget.src = "/ichidai.png";
           }}
         />
-        <img
-          src="abc.jpg"
-          alt=""
-          style={{ maxWidth: "100%", minHeight: "20vw", display: "block" }}
-          onError={(event: any) => {
-            event.target.src = "/tenant.png";
+
+        <Image
+          src="abc.png"
+          alt="株式会社一代"
+          width={1200}
+          height={638}
+          className="image"
+          onError={(event) => {
+            event.currentTarget.onerror = null;
+            event.currentTarget.src = "/tenant.png";
           }}
         />
       </div>
