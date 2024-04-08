@@ -95,6 +95,15 @@ const Page: NextPage = () => {
           //   event.currentTarget.src = "/ichidai.png";
           // }}
         />
+        <img
+          src="abc.jpg"
+          alt=""
+          style={{ maxWidth: "100%" }}
+          onError={(event) => {
+            event.currentTarget.onerror = null;
+            event.currentTarget.src = "/ichidai.png";
+          }}
+        />
       </div>
       <style jsx>
         {`
