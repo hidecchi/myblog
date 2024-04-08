@@ -70,11 +70,15 @@ const Page: NextPage = () => {
           rel="noopener noreferrer"
         >
           <Image
-            src="/ichidai.png"
+            src="abc.png"
             alt="株式会社一代"
             width={1200}
             height={638}
             className="image"
+            onError={(event) => {
+              // event.currentTarget.onerror = null;
+              event.currentTarget.src = "/tenant.png";
+            }}
           />
         </a>
         <img
