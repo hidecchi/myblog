@@ -1,4 +1,4 @@
-/* @import url("https://fonts.googleapis.com/css2?family=Sawarabi+Mincho&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Sawarabi+Mincho&display=swap");
 
 html {
   font-size: 16px;
@@ -7,11 +7,10 @@ body {
   padding: 0;
   margin: 0;
   font-size: 16px;
-  line-height: 1.6;
+  line-height: 2;
   letter-spacing: 0.06em;
-  font-family: HelveticaNeue, Arial, 游ゴシック体, "Yu Gothic", YuGothic,
-    "ヒラギノ角ゴシック Pro", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo,
-    "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+  font-family: Arial, YuGothic, Yu Gothic medium, Hiragino Sans, Meiryo,
+    "sans-serif";
   background-color: #f7f7f7;
   /* color: #6d5c5a; */
   color: #505050;
@@ -31,6 +30,7 @@ main {
 }
 
 a {
+  max-width: 100%;
   display: inline-block;
   color: inherit;
   text-decoration: none;
@@ -51,6 +51,10 @@ ul {
 }
 li {
   list-style: none;
+}
+img {
+  max-width: 100%;
+  height: auto;
 }
 
 *,
@@ -78,6 +82,7 @@ code {
   min-height: calc(100vh - 150px);
   padding-right: 40px;
   flex-grow: 1;
+  min-width: 0;
   position: relative;
 }
 .inner .main::after {
@@ -460,4 +465,82 @@ code {
   .loading-text {
     font-size: 9vw;
   }
+}
+
+.heading2 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+.image-wrap {
+  margin-bottom: 1rem;
+}
+.image-wrap:hover {
+  opacity: 0.8;
+}
+
+iframe {
+  display: none;
+}
+form {
+  margin-top: 10px;
+}
+form label {
+  display: block;
+  margin-bottom: 16px;
+}
+form label span {
+  display: block;
+}
+form label input {
+  appearance: none;
+  outline: none;
+  width: 100%;
+  max-width: 400px;
+  height: 30px;
+  border: 1px solid #d3cece;
+  border-radius: 0px;
+}
+form label input:focus {
+  border: 1px solid #42b5e0;
+}
+
+form label textarea {
+  appearance: none;
+  resize: none;
+  outline: none;
+  width: 100%;
+  max-width: 400px;
+  height: 130px;
+  padding: 2px;
+  font-family: Arial, YuGothic, "Yu Gothic medium", "Hiragino Sans", Meiryo,
+    "sans-serif";
+  border: 1px solid #d3cece;
+  border-radius: 0px;
+}
+form label textarea:focus {
+  border: 1px solid #42b5e0;
+}
+form button[type="submit"] {
+  appearance: none;
+  max-width: 400px;
+  position: relative;
+  width: 200px;
+  padding: 10px;
+  margin-bottom: 10px;
+  position: relative;
+  background-color: transparent;
+  border-bottom: 1px solid #050505;
+  border-right: none;
+  border-left: none;
+  border-top: none;
+  cursor: pointer;
+  font-family: Arial, YuGothic, "Yu Gothic medium", "Hiragino Sans", Meiryo,
+    "sans-serif";
+}
+form button[type="submit"]:hover {
+  opacity: 0.5;
+}
+
+.thanks {
+  color: red;
 }
