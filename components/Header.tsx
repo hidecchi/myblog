@@ -1,30 +1,31 @@
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { useState } from "react";
+"use client";
+
 import Image from "next/image";
-import React, { useContext } from "react";
-import { drawerContext } from "pages/_app";
+import Link from "next/link";
+import { usePathname,useRouter  } from "next/navigation";
+import { FormEvent,useEffect,useState  } from "react";
+
 
 const Header = (): JSX.Element => {
-  const { drawerOpen, setDrawerOpen } = useContext(drawerContext);
-  const toggleDrawer = function () {
-    drawerOpen ? setDrawerOpen(false) : setDrawerOpen(true);
-  };
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const toggleDrawer = () => setDrawerOpen((prev) => !prev);
 
   const router = useRouter(); //ルーターの取得
+  const pathname = usePathname();
   const [input, setInput] = useState<string>("");
-  const search = (e: React.SyntheticEvent) => {
+  const search = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!input) return;
-    router.push({
-      pathname: "/search", //URL
-      query: { keyword: input }, //検索クエリ
-    });
+    router.push(`/search?keyword=${input}`);
   };
+
+  useEffect(() => {
+    setDrawerOpen(false);
+  }, [pathname]);
 
   return (
     <header>
-      {router.pathname === "/" ? (
+      {true ? (
         <h1 className="site-title">
           <Link href="/">Kitsune Blog</Link>
         </h1>
@@ -38,42 +39,28 @@ const Header = (): JSX.Element => {
         <nav>
           <ul>
             <li>
-              <Link href="/">
-                <a>ホーム</a>
-              </Link>
+              <Link href="/">ホーム</Link>
             </li>
             <li>
-              <Link href="/archive">
-                <a>アーカイブ</a>
-              </Link>
+              <Link href="/archive">アーカイブ</Link>
             </li>
             <li>
-              <Link href="/profile">
-                <a>プロフィール</a>
-              </Link>
+              <Link href="/profile">プロフィール</Link>
             </li>
             <li>
-              <Link href="/contact">
-                <a>お問い合わせ</a>
-              </Link>
+              <Link href="/contact">お問い合わせ</Link>
             </li>
           </ul>
         </nav>
         <form className="search-form" onSubmit={search}>
-          {/* 入力項目 */}
           <input
             type="text"
             placeholder="Search"
             value={input}
-            onChange={(e) =>
-              setInput(e.target.value)
-            } /*変更時inputに値をセット*/
+            onChange={(e) => setInput(e.target.value)}
           />
 
-          {/* ボタン */}
           <button type="submit" disabled={!input}>
-            {" "}
-            {/*入力項目が未入力の場合、非活性*/}
             <Image
               src="/search.png"
               alt="Picture of the author"

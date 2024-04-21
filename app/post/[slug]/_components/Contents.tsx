@@ -1,54 +1,15 @@
-import Head from "next/head";
-import type {
-  NextPage,
-  GetStaticPropsContext,
-  InferGetStaticPropsType,
-} from "next";
-import { useRouter } from "next/router";
-import Image from "next/image";
-import { createClient } from "contentful";
+"use client";
+
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { BLOCKS } from "@contentful/rich-text-types";
+import { Entry } from "contentful";
+import Image from "next/image";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { foundation } from "react-syntax-highlighter/dist/cjs/styles/hljs";
-import { IBlogFields } from "../../@types/generated/contentful";
 
-const client = createClient({
-  space: process.env.CONTENTFUL_SPACE_ID as string,
-  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN as string,
-});
+import { IBlogFields } from "../../../../@types/generated/contentful";
 
-export const getStaticPaths = async () => {
-  const res = await client.getEntries<IBlogFields>({
-    content_type: "blog",
-  });
-  const paths = res.items.map((item) => {
-    return {
-      params: { slug: item.fields.slug },
-    };
-  });
-  return {
-    paths,
-    fallback: false,
-  };
-};
-
-export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
-  const res = await client.getEntries<IBlogFields>({
-    content_type: "blog",
-    "fields.slug": params?.slug,
-  });
-  return {
-    props: {
-      blog: res.items[0],
-    },
-  };
-};
-
-type Props = InferGetStaticPropsType<typeof getStaticProps>;
-
-const Page: NextPage<Props> = ({ blog }) => {
-  const router = useRouter();
+export const Contents = async ({ blog }: { blog: Entry<IBlogFields> }) => {
   const twitterShare = function (e: React.MouseEvent<HTMLAnchorElement>) {
     e.preventDefault();
     const url = location.href;
@@ -68,36 +29,8 @@ const Page: NextPage<Props> = ({ blog }) => {
     window.open(shareUrl, "_blank");
   };
 
-  if (!blog)
-    return (
-      <>
-        <div className="main">
-          <div>loading</div>
-        </div>
-      </>
-    );
   return (
     <>
-      <Head>
-        <title>{blog.fields.title} | kitsune Blog</title>
-        <meta
-          name="description"
-          content={
-            blog.fields.description
-              ? blog.fields.description
-              : "Webエンジニアkitsuneのブログです。"
-          }
-        />
-        <meta
-          property="og:title"
-          content={blog.fields.title + " | kitsune Blog"}
-        />
-        <meta
-          property="og:image"
-          content={"https:" + blog.fields.thumbnail?.fields.file.url}
-        />
-        <meta property="og:type" content="article" />
-      </Head>
       <div className="main">
         <h1>{blog.fields.title}</h1>
         <div className="sns-share">
@@ -116,8 +49,8 @@ const Page: NextPage<Props> = ({ blog }) => {
         <p className="thumbnail">
           <Image
             src={"https:" + blog.fields.thumbnail?.fields.file.url}
-            layout="fill"
-            objectFit="cover"
+            fill
+            style={{ objectFit: "cover" }}
             alt=""
             priority={true}
             sizes={"450px"}
@@ -128,7 +61,7 @@ const Page: NextPage<Props> = ({ blog }) => {
           {documentToReactComponents(blog.fields.blogcontent, {
             renderNode: {
               // eslint-disable-next-line react/display-name
-              [BLOCKS.HEADING_2]: (node, children) => {
+              [BLOCKS.HEADING_2]: (_, children) => {
                 return <h2>{children}</h2>;
               },
               [BLOCKS.PARAGRAPH]: (node: any, children) => {
@@ -150,7 +83,7 @@ const Page: NextPage<Props> = ({ blog }) => {
                   <Image
                     src={"https:" + node.data.target.fields.file.url}
                     alt=""
-                    layout="fill"
+                    fill
                     sizes={"450px"}
                   />
                 </div>
@@ -240,5 +173,3 @@ const Page: NextPage<Props> = ({ blog }) => {
     </>
   );
 };
-
-export default Page;
