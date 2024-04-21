@@ -1,6 +1,7 @@
 import { createClient } from "contentful";
-import { IBlogFields } from "../../../@types/generated/contentful";
 import { notFound } from "next/navigation";
+
+import { IBlogFields } from "../../../@types/generated/contentful";
 import { Contents } from "./_components/Contents";
 
 const client = createClient({
@@ -28,10 +29,6 @@ export const generateMetadata = async ({
 }: {
   params: { slug: string };
 }) => {
-  const client = createClient({
-    space: process.env.CONTENTFUL_SPACE_ID as string,
-    accessToken: process.env.CONTENTFUL_ACCESS_TOKEN as string,
-  });
   const res = await client.getEntries<IBlogFields>({
     content_type: "blog",
     "fields.slug": params?.slug,

@@ -1,4 +1,5 @@
 import type { Metadata, NextPage } from "next";
+
 import { Contents } from "./_components/Contents";
 
 export const metadata: Metadata = {

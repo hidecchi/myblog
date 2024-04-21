@@ -1,11 +1,10 @@
 "use client";
 
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
 import Image from "next/image";
-import { useEffect, FormEvent } from "react";
-import { usePathname } from "next/navigation";
+import Link from "next/link";
+import { usePathname,useRouter  } from "next/navigation";
+import { FormEvent,useEffect,useState  } from "react";
+
 
 const Header = (): JSX.Element => {
   const [drawerOpen, setDrawerOpen] = useState(false);

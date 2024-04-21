@@ -1,6 +1,6 @@
+import type { Metadata, NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import type { Metadata, NextPage } from "next";
 
 export const metadata: Metadata = {
   title: "プロフィール | kitsune Blog",

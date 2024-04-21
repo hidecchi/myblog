@@ -10,9 +10,7 @@ const Pager = ({ pagers, pageNumber }: Props): JSX.Element => {
     <ul className="pager">
       {pagers.map((value) => (
         <li key={value} className={value === pageNumber ? "active" : ""}>
-          <Link href={`/archive/${value}`}>
-            <a>{value}</a>
-          </Link>
+          <Link href={`/archive/${value}`}>{value}</Link>
         </li>
       ))}
     </ul>

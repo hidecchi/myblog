@@ -1,6 +1,7 @@
-import { Metadata } from "next";
-import { createClient } from "contentful";
 import BlogCards from "components/BlogCards";
+import { createClient } from "contentful";
+import { Metadata } from "next";
+
 import { IBlogFields } from "../@types/generated/contentful";
 
 export const metadata: Metadata = {

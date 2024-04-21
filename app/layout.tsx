@@ -1,8 +1,9 @@
-import Header from "components/Header";
-import Sidebar from "components/Sidebar";
-import Loading from "components/Loading";
-import { ReactNode } from "react";
 import "styles/globals.css";
+
+import Header from "components/Header";
+import Loading from "components/Loading";
+import Sidebar from "components/Sidebar";
+import { ReactNode } from "react";
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (

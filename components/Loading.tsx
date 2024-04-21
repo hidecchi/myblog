@@ -1,7 +1,7 @@
 "use client";
 
-import { createRef, useEffect, useRef } from "react";
 import { gsap } from "gsap";
+import { createRef, useEffect, useRef } from "react";
 
 const Loading = (): JSX.Element => {
   useEffect(() => {

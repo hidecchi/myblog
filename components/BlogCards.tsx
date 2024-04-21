@@ -1,8 +1,8 @@
-import Link from "next/link";
-import Image from "next/image";
-import getTagLink from "functions/getTagLink";
-import getTagName from "functions/getTagName";
 import { Entry } from "contentful";
+import Image from "next/image";
+import Link from "next/link";
+import { getTagLink, getTagName } from "utils/utils";
+
 import { IBlogFields } from "../@types/generated/contentful";
 
 type Props = { blogs: Entry<IBlogFields>[] };
@@ -28,8 +28,8 @@ const BlogCards = ({ blogs }: Props): JSX.Element => {
             <p className="thumbnail">
               <Image
                 src={"https:" + blog.fields.thumbnail?.fields.file.url}
-                layout="fill"
-                objectFit="cover"
+                fill
+                style={{ objectFit: "cover" }}
                 alt=""
                 sizes={"300px"}
               />

@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
-import { createClient } from "contentful";
 import BlogCards from "components/BlogCards";
-import { Entry } from "contentful";
+import { createClient , Entry } from "contentful";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+
 import { IBlogFields } from "../../../@types/generated/contentful";
 
 export const Contents = () => {

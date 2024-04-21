@@ -1,7 +1,8 @@
 import { Entry } from "contentful";
+
 import { IBlogFields } from "../@types/generated/contentful";
 
-const getTagName = (blog: Entry<IBlogFields>): string => {
+export const getTagName = (blog: Entry<IBlogFields>): string => {
   if (blog.metadata.tags.length !== 0) {
     if (blog.metadata.tags[0].sys.id === "freelance") {
       return "フリーランス";
@@ -14,4 +15,9 @@ const getTagName = (blog: Entry<IBlogFields>): string => {
   return "";
 };
 
-export default getTagName;
+export const getTagLink = (blog: Entry<IBlogFields>): string => {
+  if (blog.metadata.tags.length !== 0) {
+    return `/category/${blog.metadata.tags[0].sys.id}`;
+  }
+  return "";
+};

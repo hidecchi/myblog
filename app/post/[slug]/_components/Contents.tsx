@@ -1,12 +1,13 @@
 "use client";
 
-import Image from "next/image";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { BLOCKS } from "@contentful/rich-text-types";
+import { Entry } from "contentful";
+import Image from "next/image";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { foundation } from "react-syntax-highlighter/dist/cjs/styles/hljs";
+
 import { IBlogFields } from "../../../../@types/generated/contentful";
-import { Entry } from "contentful";
 
 export const Contents = async ({ blog }: { blog: Entry<IBlogFields> }) => {
   const twitterShare = function (e: React.MouseEvent<HTMLAnchorElement>) {
@@ -48,8 +49,8 @@ export const Contents = async ({ blog }: { blog: Entry<IBlogFields> }) => {
         <p className="thumbnail">
           <Image
             src={"https:" + blog.fields.thumbnail?.fields.file.url}
-            layout="fill"
-            objectFit="cover"
+            fill
+            style={{ objectFit: "cover" }}
             alt=""
             priority={true}
             sizes={"450px"}
@@ -82,7 +83,7 @@ export const Contents = async ({ blog }: { blog: Entry<IBlogFields> }) => {
                   <Image
                     src={"https:" + node.data.target.fields.file.url}
                     alt=""
-                    layout="fill"
+                    fill
                     sizes={"450px"}
                   />
                 </div>
