@@ -1,7 +1,7 @@
 import BlogCards from "components/BlogCards";
 import Pager from "components/Pager";
 import { createClient } from "contentful";
-import type { Metadata, NextPage } from "next";
+import type { Metadata } from "next";
 
 import { IBlogFields } from "../../../@types/generated/contentful";
 
