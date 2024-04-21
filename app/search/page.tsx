@@ -1,4 +1,5 @@
 import type { Metadata, NextPage } from "next";
+import { Suspense } from "react";
 
 import { Contents } from "./_components/Contents";
 
@@ -8,7 +9,11 @@ export const metadata: Metadata = {
 };
 
 const Page: NextPage = () => {
-  return <Contents />;
+  return (
+    <Suspense>
+      <Contents />
+    </Suspense>
+  );
 };
 
 export default Page;

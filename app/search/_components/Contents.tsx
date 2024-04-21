@@ -1,13 +1,16 @@
+"use client";
+
 import BlogCards from "components/BlogCards";
-import { createClient , Entry } from "contentful";
-import { useRouter } from "next/router";
+import { createClient, Entry } from "contentful";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { IBlogFields } from "../../../@types/generated/contentful";
 
 export const Contents = () => {
   const [blogs, setBlogs] = useState<Entry<IBlogFields>[]>([]);
-  const router = useRouter();
+  const searchParams = useSearchParams();
+  const keyword = searchParams.get("keyword");
 
   async function csrFetchData() {
     const client = createClient({
@@ -17,26 +20,25 @@ export const Contents = () => {
     const res = await client.getEntries<IBlogFields>({
       content_type: "blog",
       order: "-sys.createdAt",
-      query: router.query.keyword,
+      query: keyword,
     });
     setBlogs(res.items);
   }
 
   useEffect(() => {
-    if (!router.isReady) return;
     try {
       csrFetchData();
     } catch (error) {
       console.log(error);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [router.query.keyword, router.isReady]);
+  }, [keyword]);
 
   const heading = "検索結果";
   return (
     <div className="main">
       <h1 className="heading">{heading}</h1>
-      <h3 className="search-text">キーワード：{router.query.keyword}</h3>
+      <h3 className="search-text">キーワード：{keyword}</h3>
       {blogs ? <BlogCards blogs={blogs} /> : null}
     </div>
   );

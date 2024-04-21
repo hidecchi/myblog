@@ -61,7 +61,7 @@ export const Contents = async ({ blog }: { blog: Entry<IBlogFields> }) => {
           {documentToReactComponents(blog.fields.blogcontent, {
             renderNode: {
               // eslint-disable-next-line react/display-name
-              [BLOCKS.HEADING_2]: (node, children) => {
+              [BLOCKS.HEADING_2]: (_, children) => {
                 return <h2>{children}</h2>;
               },
               [BLOCKS.PARAGRAPH]: (node: any, children) => {
