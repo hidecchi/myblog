@@ -9,7 +9,7 @@ import { foundation } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 
 import { IBlogFields } from "../../../../@types/generated/contentful";
 
-export const Contents = async ({ blog }: { blog: Entry<IBlogFields> }) => {
+export const Contents = ({ blog }: { blog: Entry<IBlogFields> }) => {
   const twitterShare = function (e: React.MouseEvent<HTMLAnchorElement>) {
     e.preventDefault();
     const url = location.href;
