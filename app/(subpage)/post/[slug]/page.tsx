@@ -1,7 +1,7 @@
 import { createClient } from "contentful";
 import { notFound } from "next/navigation";
 
-import { IBlogFields } from "../../../@types/generated/contentful";
+import { IBlogFields } from "../../../../@types/generated/contentful";
 import { Contents } from "./_components/Contents";
 
 const client = createClient({

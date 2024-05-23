@@ -2,11 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname,useRouter  } from "next/navigation";
-import { FormEvent,useEffect,useState  } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import { FormEvent, useEffect, useState } from "react";
 
-
-const Header = (): JSX.Element => {
+const Header = ({ top }: { top?: boolean }): JSX.Element => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const toggleDrawer = () => setDrawerOpen((prev) => !prev);
 
@@ -25,7 +24,7 @@ const Header = (): JSX.Element => {
 
   return (
     <header>
-      {true ? (
+      {top ? (
         <h1 className="site-title">
           <Link href="/">Kitsune Blog</Link>
         </h1>
@@ -73,6 +72,8 @@ const Header = (): JSX.Element => {
       <button
         className={drawerOpen ? "menu-btn is-open" : "menu-btn"}
         onClick={toggleDrawer}
+        aria-label="メニューボタン"
+        aria-expanded={drawerOpen}
       >
         <span></span>
         <span></span>

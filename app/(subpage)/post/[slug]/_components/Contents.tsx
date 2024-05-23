@@ -34,15 +34,28 @@ export const Contents = ({ blog }: { blog: Entry<IBlogFields> }) => {
       <div className="main">
         <h1>{blog.fields.title}</h1>
         <div className="sns-share">
-          <a className="twitter" onClick={twitterShare} href="#">
-            <i className="fab fa-twitter"></i>
-            <span>ツイート</span>
+          <a
+            className="twitter"
+            onClick={twitterShare}
+            href="#"
+            aria-label="Xでポストする"
+          >
+            <span>X(twitter)</span>
           </a>
-          <a className="facebook" onClick={facebookShare} href="#">
-            <i className="fab fa-facebook-f"></i>
-            <span>シェア</span>
+          <a
+            className="facebook"
+            onClick={facebookShare}
+            href="#"
+            aria-label="Facebookでシェアする"
+          >
+            <span>Facebook</span>
           </a>
-          <a className="line" onClick={lineShare} href="#">
+          <a
+            className="line"
+            onClick={lineShare}
+            href="#"
+            aria-label="lineでシェアする"
+          >
             <span>LINE</span>
           </a>
         </div>
@@ -127,7 +140,7 @@ export const Contents = ({ blog }: { blog: Entry<IBlogFields> }) => {
             vertical-align: middle;
           }
           .twitter {
-            background-color: #1b95e0;
+            background-color: #000;
           }
           .facebook {
             background-color: #4267b2;

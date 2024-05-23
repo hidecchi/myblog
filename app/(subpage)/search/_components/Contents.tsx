@@ -5,7 +5,7 @@ import { createClient, Entry } from "contentful";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import { IBlogFields } from "../../../@types/generated/contentful";
+import { IBlogFields } from "../../../../@types/generated/contentful";
 
 export const Contents = () => {
   const [blogs, setBlogs] = useState<Entry<IBlogFields>[]>([]);

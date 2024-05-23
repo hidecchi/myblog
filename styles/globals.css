@@ -518,6 +518,7 @@ code {
 }
 .contact-page form label {
   display: block;
+  max-width: 400px;
   margin-bottom: 16px;
 }
 .contact-page form label span {
@@ -546,7 +547,7 @@ code {
   width: 100%;
   max-width: 400px;
   height: 130px;
-  padding: 2px;
+  padding: 8px 2px;
   font-family: Arial, YuGothic, "Yu Gothic medium", "Hiragino Sans", Meiryo, "sans-serif";
   border: 1px solid #d3cece;
   border-radius: 0px;

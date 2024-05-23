@@ -3,7 +3,7 @@ import Pager from "components/Pager";
 import { createClient } from "contentful";
 import type { Metadata } from "next";
 
-import { IBlogFields } from "../../../@types/generated/contentful";
+import { IBlogFields } from "../../../../@types/generated/contentful";
 
 const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID as string,
@@ -35,7 +35,11 @@ const Page = async ({ params }: { params: { id: string } }) => {
     <div className="main">
       <h1 className="heading">{heading}</h1>
       <BlogCards blogs={displays} />
-      <Pager pagers={pagers} pageNumber={Number(pageNumber)} />
+      <Pager
+        path="/category/other"
+        pagers={pagers}
+        pageNumber={Number(pageNumber)}
+      />
     </div>
   );
 };

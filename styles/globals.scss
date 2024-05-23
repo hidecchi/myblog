@@ -9,7 +9,12 @@ body {
   font-size: 16px;
   line-height: 2;
   letter-spacing: 0.06em;
-  font-family: Arial, YuGothic, Yu Gothic medium, Hiragino Sans, Meiryo,
+  font-family:
+    Arial,
+    YuGothic,
+    Yu Gothic medium,
+    Hiragino Sans,
+    Meiryo,
     "sans-serif";
   background-color: #f7f7f7;
   /* color: #6d5c5a; */
@@ -487,6 +492,7 @@ code {
   }
   form label {
     display: block;
+    max-width: 400px;
     margin-bottom: 16px;
   }
   form label span {
@@ -512,7 +518,7 @@ code {
     width: 100%;
     max-width: 400px;
     height: 130px;
-    padding: 2px;
+    padding: 8px 2px;
     font-family: Arial, YuGothic, "Yu Gothic medium", "Hiragino Sans", Meiryo,
       "sans-serif";
     border: 1px solid #d3cece;

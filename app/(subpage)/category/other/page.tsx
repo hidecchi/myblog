@@ -1,9 +1,9 @@
 import BlogCards from "components/BlogCards";
 import Pager from "components/Pager";
 import { createClient } from "contentful";
-import type { Metadata } from "next";
+import type { Metadata, NextPage } from "next";
 
-import { IBlogFields } from "../../../@types/generated/contentful";
+import { IBlogFields } from "../../../../@types/generated/contentful";
 
 const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID as string,
@@ -12,21 +12,20 @@ const client = createClient({
 const displayNumber = 6;
 
 export const metadata: Metadata = {
-  title: "プログラミング | kitsune Blog",
+  title: "その他 | kitsune Blog",
   description: "Webエンジニアkitsuneのブログのアーカイブページです。",
 };
 
-const Page = async ({ params }: { params: { id: string } }) => {
+const Page: NextPage = async () => {
   const res = await client.getEntries<IBlogFields>({
     content_type: "blog",
     order: "-sys.createdAt",
-    "metadata.tags.sys.id[all]": "programing",
+    "metadata.tags.sys.id[all]": "other",
   });
   const maxPageNumber = Math.ceil(res.items.length / displayNumber);
-  const pageNumber = params.id;
-  const startNumber = 6 * (Number(pageNumber || 1) - 1);
+  const startNumber = 0;
   const displays = res.items.slice(startNumber, startNumber + displayNumber);
-  const heading = "プログラミング";
+  const heading = "その他";
   const pagers: number[] = [];
   for (let i = 1; i <= maxPageNumber; i++) {
     pagers.push(i);
@@ -35,7 +34,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
     <div className="main">
       <h1 className="heading">{heading}</h1>
       <BlogCards blogs={displays} />
-      <Pager pagers={pagers} pageNumber={Number(pageNumber)} />
+      <Pager path="/category/other" pagers={pagers} pageNumber={1} />
     </div>
   );
 };

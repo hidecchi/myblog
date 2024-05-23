@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 const Page: NextPage = () => {
   return (
-    <Suspense>
+    <Suspense fallback={<div className="main" />}>
       <Contents />
     </Suspense>
   );

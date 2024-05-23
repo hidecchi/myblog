@@ -12,7 +12,7 @@ const client = createClient({
 const displayNumber = 6;
 
 export const metadata: Metadata = {
-  title: "フリーランス | kitsune Blog",
+  title: "アーカイブ | kitsune Blog",
   description: "Webエンジニアkitsuneのブログのアーカイブページです。",
 };
 
@@ -20,12 +20,11 @@ const Page: NextPage = async () => {
   const res = await client.getEntries<IBlogFields>({
     content_type: "blog",
     order: "-sys.createdAt",
-    "metadata.tags.sys.id[all]": "freelance",
   });
   const maxPageNumber = Math.ceil(res.items.length / displayNumber);
   const startNumber = 0;
   const displays = res.items.slice(startNumber, startNumber + displayNumber);
-  const heading = "プログラミング";
+  const heading = "アーカイブ";
   const pagers: number[] = [];
   for (let i = 1; i <= maxPageNumber; i++) {
     pagers.push(i);
@@ -34,7 +33,7 @@ const Page: NextPage = async () => {
     <div className="main">
       <h1 className="heading">{heading}</h1>
       <BlogCards blogs={displays} />
-      <Pager pagers={pagers} pageNumber={1} />
+      <Pager path="/archive" pagers={pagers} pageNumber={1} />
     </div>
   );
 };

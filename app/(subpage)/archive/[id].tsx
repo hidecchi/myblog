@@ -1,9 +1,9 @@
 import BlogCards from "components/BlogCards";
 import Pager from "components/Pager";
 import { createClient } from "contentful";
-import type { Metadata, NextPage } from "next";
+import type { Metadata } from "next";
 
-import { IBlogFields } from "../../@types/generated/contentful";
+import { IBlogFields } from "../../../@types/generated/contentful";
 
 const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID as string,
@@ -16,13 +16,14 @@ export const metadata: Metadata = {
   description: "Webエンジニアkitsuneのブログのアーカイブページです。",
 };
 
-const Page: NextPage = async () => {
+const Page = async ({ params }: { params: { id: string } }) => {
   const res = await client.getEntries<IBlogFields>({
     content_type: "blog",
     order: "-sys.createdAt",
   });
   const maxPageNumber = Math.ceil(res.items.length / displayNumber);
-  const startNumber = 0;
+  const pageNumber = params.id;
+  const startNumber = 6 * (Number(pageNumber || 1) - 1);
   const displays = res.items.slice(startNumber, startNumber + displayNumber);
   const heading = "アーカイブ";
   const pagers: number[] = [];
@@ -33,7 +34,7 @@ const Page: NextPage = async () => {
     <div className="main">
       <h1 className="heading">{heading}</h1>
       <BlogCards blogs={displays} />
-      <Pager pagers={pagers} pageNumber={1} />
+      <Pager path="/archive" pagers={pagers} pageNumber={1} />
     </div>
   );
 };

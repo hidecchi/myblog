@@ -2,7 +2,7 @@ import BlogCards from "components/BlogCards";
 import { createClient } from "contentful";
 import { Metadata } from "next";
 
-import { IBlogFields } from "../@types/generated/contentful";
+import { IBlogFields } from "../../@types/generated/contentful";
 
 export const metadata: Metadata = {
   title: "kitsune Blog",
