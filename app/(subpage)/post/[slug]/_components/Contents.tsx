@@ -7,7 +7,7 @@ import Image from "next/image";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { foundation } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 
-import { IBlogFields } from "../../../../@types/generated/contentful";
+import { IBlogFields } from "../../../../../@types/generated/contentful";
 
 export const Contents = ({ blog }: { blog: Entry<IBlogFields> }) => {
   const twitterShare = function (e: React.MouseEvent<HTMLAnchorElement>) {
