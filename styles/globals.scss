@@ -408,6 +408,9 @@ code {
     bottom: 0;
     z-index: 1000;
     border-top: 1px solid white;
+    .search-form {
+      display: none;
+    }
   }
   .sidebar h2 {
     display: none;
@@ -431,9 +434,6 @@ code {
     background-color: #eee;
     font-style: normal;
     border: none;
-  }
-  .search-form {
-    display: none;
   }
 }
 @media screen and (max-width: 365px) {
@@ -600,8 +600,10 @@ header nav ul li a:hover::after {
 .menu-btn.is-open::after {
   content: "Close";
 }
-.search-form {
-  display: none;
+.menus {
+  .search-form {
+    display: none;
+  }
 }
 @media screen and (max-width: 540px) {
   header {
@@ -626,6 +628,10 @@ header nav ul li a:hover::after {
     border-left: 1px solid #d3cece;
     z-index: 100;
     transition: opacity 0.2s;
+    .search-form {
+      display: block;
+      position: relative;
+    }
   }
   @keyframes fade-in {
     0% {
@@ -652,10 +658,7 @@ header nav ul li a:hover::after {
   header nav ul li a::after {
     display: none;
   }
-  .search-form {
-    display: block;
-    position: relative;
-  }
+
   .search-form input {
     appearance: none;
     outline: none;

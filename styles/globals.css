@@ -434,6 +434,9 @@ code {
     z-index: 1000;
     border-top: 1px solid white;
   }
+  .sidebar .search-form {
+    display: none;
+  }
   .sidebar h2 {
     display: none;
   }
@@ -456,9 +459,6 @@ code {
     background-color: #eee;
     font-style: normal;
     border: none;
-  }
-  .search-form {
-    display: none;
   }
 }
 @media screen and (max-width: 365px) {
@@ -636,7 +636,7 @@ header nav ul li a:hover::after {
   content: "Close";
 }
 
-.search-form {
+.menus .search-form {
   display: none;
 }
 
@@ -664,6 +664,10 @@ header nav ul li a:hover::after {
     z-index: 100;
     transition: opacity 0.2s;
   }
+  .menus .search-form {
+    display: block;
+    position: relative;
+  }
   @keyframes fade-in {
     0% {
       opacity: 0;
@@ -688,10 +692,6 @@ header nav ul li a:hover::after {
   }
   header nav ul li a::after {
     display: none;
-  }
-  .search-form {
-    display: block;
-    position: relative;
   }
   .search-form input {
     -webkit-appearance: none;
