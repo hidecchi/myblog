@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { FormEvent,useState } from "react";
+import { FormEvent, useState } from "react";
 
 const Sidebar = (): JSX.Element => {
   const router = useRouter();
@@ -37,7 +37,7 @@ const Sidebar = (): JSX.Element => {
           value={input}
           onChange={(e) => setInput(e.target.value)} /*変更時inputに値をセット*/
         />
-        <button type="submit" disabled={!input}>
+        <button type="submit" disabled={!input} aria-label="検索する">
           <Image src="/search.png" alt="" width={18} height={14} />
         </button>
       </form>

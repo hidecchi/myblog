@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Sawarabi+Mincho&display=swap");
+// @import url("https://fonts.googleapis.com/css2?family=Sawarabi+Mincho&display=swap");
 
 html {
   font-size: 16px;
@@ -103,9 +103,9 @@ code {
   display: flex;
   align-items: center;
   margin-bottom: 0.3em;
-
+  height: 48px;
   font-size: 1.5em;
-  font-family: "Sawarabi Mincho", sans-serif;
+  // font-family: var(--mincho-font);
 }
 .heading::before {
   content: "";
@@ -226,7 +226,7 @@ code {
   transform: translateY(-50%);
   writing-mode: vertical-rl;
   font-style: italic;
-  font-family: "Sawarabi Mincho", sans-serif;
+  font-family: var(--mincho-font);
   background-color: #eee;
 }
 .contents a {
@@ -293,6 +293,7 @@ code {
   }
   .heading {
     font-size: 21px;
+    height: 42px;
   }
 
   .blog-list li {
@@ -332,7 +333,7 @@ code {
 
 .sidebar-title {
   margin-bottom: 0.3em;
-  font-family: "Sawarabi Mincho", sans-serif;
+  font-family: var(--mincho-font);
   display: flex;
   align-items: center;
   color: #6d5c5a;
@@ -458,7 +459,7 @@ code {
 .loading-text {
   font-size: 48px;
   letter-spacing: 0.16em;
-  font-family: "Sawarabi Mincho", sans-serif;
+  font-family: var(--mincho-font);
   opacity: 0;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;

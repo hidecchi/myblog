@@ -83,14 +83,16 @@ const Header = ({ top }: { top?: boolean }): JSX.Element => {
           header {
             padding: 20px;
             position: relative;
+            height: 132px;
           }
           .site-title {
             display: table;
             margin: 0 auto 0.5em auto;
             font-size: 24px;
+            height: 48px;
 
             letter-spacing: 0.1em;
-            font-family: "Sawarabi Mincho", sans-serif;
+            font-family: var(--mincho-font);
           }
           header nav ul {
             display: flex;
@@ -136,6 +138,7 @@ const Header = ({ top }: { top?: boolean }): JSX.Element => {
             .site-title {
               margin-bottom: 0;
               font-size: 22px;
+              height: 44px;
             }
             .menus {
               width: 180px;
