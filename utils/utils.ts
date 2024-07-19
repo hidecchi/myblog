@@ -21,3 +21,22 @@ export const getTagLink = (blog: Entry<IBlogFields>): string => {
   }
   return "";
 };
+
+export const getFormatedNow = () => {
+  const date = new Date();
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  const hour = date.getHours();
+  const minute = date.getMinutes();
+  const second = date.getSeconds();
+  return (
+    year +
+    ("0" + month).slice(-2) +
+    ("0" + day).slice(-2) +
+    "_" +
+    ("0" + hour).slice(-2) +
+    ("0" + minute).slice(-2) +
+    ("0" + second).slice(-2)
+  );
+};
