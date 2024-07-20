@@ -1,7 +1,6 @@
 import BlogCards from "components/BlogCards";
 import { createClient } from "contentful";
 import { Metadata } from "next";
-import { getFormatedNow } from "utils/utils";
 
 import { IBlogFields } from "../../@types/generated/contentful";
 
@@ -32,7 +31,6 @@ const Page = async () => {
     <div className="main">
       <h2 className="heading">{heading}</h2>
       <BlogCards blogs={blogs} />
-      <p>{getFormatedNow()}</p>
     </div>
   );
 };

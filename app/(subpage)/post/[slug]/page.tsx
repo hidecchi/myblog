@@ -1,6 +1,5 @@
 import { createClient } from "contentful";
 import { notFound } from "next/navigation";
-import { getFormatedNow } from "utils/utils";
 
 import { IBlogFields } from "../../../../@types/generated/contentful";
 import { Contents } from "./_components/Contents";
@@ -63,7 +62,6 @@ const Page = async ({ params }: { params: { slug: string } }) => {
   return (
     <>
       <Contents blog={blog} />
-      <p>{getFormatedNow()}</p>
     </>
   );
 };
