@@ -13,7 +13,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         </div>
       </main>
       <footer>
-        <p className="copyright">Copyright kitsune All Right Reserved</p>
+        <p className="copyright">Copyright Kitsune All Right Reserved</p>
       </footer>
     </>
   );

@@ -1,5 +1,6 @@
 import { createClient } from "contentful";
 import { notFound } from "next/navigation";
+import { getFormatedNow } from "utils/utils";
 
 import { IBlogFields } from "../../../../@types/generated/contentful";
 import { Contents } from "./_components/Contents";
@@ -36,10 +37,10 @@ export const generateMetadata = async ({
   const blog = res.items[0];
   if (!blog) return;
   return {
-    title: `${blog.fields.title} | kitsune Blog`,
+    title: `${blog.fields.title} | Kitsune Blog`,
     description: blog.fields.description
       ? blog.fields.description
-      : "Webエンジニアkitsuneのブログです。",
+      : "WebエンジニアKitsuneのブログです。",
     openGraph: {
       images: "https:" + blog.fields.thumbnail?.fields.file.url,
       type: "article",
@@ -59,7 +60,12 @@ const Page = async ({ params }: { params: { slug: string } }) => {
   const blog = res.items[0];
   if (!blog) return notFound();
 
-  return <Contents blog={blog} />;
+  return (
+    <>
+      <Contents blog={blog} />
+      <p>{getFormatedNow()}</p>
+    </>
+  );
 };
 
 export default Page;

@@ -12,8 +12,8 @@ const client = createClient({
 const displayNumber = 6;
 
 export const metadata: Metadata = {
-  title: "アーカイブ | kitsune Blog",
-  description: "Webエンジニアkitsuneのブログのアーカイブページです。",
+  title: "アーカイブ | Kitsune Blog",
+  description: "WebエンジニアKitsuneのブログのアーカイブページです。",
 };
 
 const Page: NextPage = async () => {

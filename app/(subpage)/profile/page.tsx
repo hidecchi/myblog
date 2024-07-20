@@ -2,8 +2,8 @@ import type { Metadata, NextPage } from "next";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "プロフィール | kitsune Blog",
-  description: "Webエンジニアkitsuneのブログのプロフィールページです。",
+  title: "プロフィール | Kitsune Blog",
+  description: "WebエンジニアKitsuneのブログのプロフィールページです。",
 };
 
 const Page: NextPage = () => {

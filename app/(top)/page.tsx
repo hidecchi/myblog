@@ -1,13 +1,14 @@
 import BlogCards from "components/BlogCards";
 import { createClient } from "contentful";
 import { Metadata } from "next";
+import { getFormatedNow } from "utils/utils";
 
 import { IBlogFields } from "../../@types/generated/contentful";
 
 export const metadata: Metadata = {
-  title: "kitsune Blog",
+  title: "Kitsune Blog",
   description:
-    "Webエンジニアkitsuneのブログです。フリーランス、プログラミング、その他について発信しています。",
+    "WebエンジニアKitsuneのブログです。フリーランス、プログラミング、その他について発信しています。",
   openGraph: {
     images: "https://kitsuneblog.vercel.app/ogp.png",
   },
@@ -31,6 +32,7 @@ const Page = async () => {
     <div className="main">
       <h2 className="heading">{heading}</h2>
       <BlogCards blogs={blogs} />
+      <p>{getFormatedNow()}</p>
     </div>
   );
 };
