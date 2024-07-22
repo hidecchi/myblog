@@ -1,4 +1,5 @@
 import { createClient } from "contentful";
+import { draftMode } from "next/headers";
 import { notFound } from "next/navigation";
 
 import { IBlogFields } from "../../../../@types/generated/contentful";
@@ -48,9 +49,13 @@ export const generateMetadata = async ({
 };
 
 const Page = async ({ params }: { params: { slug: string } }) => {
+  const { isEnabled } = draftMode();
   const client = createClient({
     space: process.env.CONTENTFUL_SPACE_ID as string,
-    accessToken: process.env.CONTENTFUL_ACCESS_TOKEN as string,
+    accessToken: isEnabled
+      ? (process.env.CONTENTFUL_PREVIEW_TOKEN as string)
+      : (process.env.CONTENTFUL_ACCESS_TOKEN as string),
+    host: isEnabled ? "preview.contentful.com" : "cdn.contentful.com",
   });
   const res = await client.getEntries<IBlogFields>({
     content_type: "blog",

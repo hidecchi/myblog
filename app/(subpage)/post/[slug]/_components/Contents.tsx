@@ -1,5 +1,6 @@
 "use client";
 
+import { useContentfulLiveUpdates } from "@contentful/live-preview/react";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { BLOCKS } from "@contentful/rich-text-types";
 import { Entry } from "contentful";
@@ -13,7 +14,7 @@ export const Contents = ({ blog }: { blog: Entry<IBlogFields> }) => {
   const twitterShare = function (e: React.MouseEvent<HTMLAnchorElement>) {
     e.preventDefault();
     const url = location.href;
-    const shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${blog.fields.title}`;
+    const shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${livePost.fields.title}`;
     window.open(shareUrl, "_blank");
   };
   const facebookShare = function (e: React.MouseEvent<HTMLAnchorElement>) {
@@ -29,10 +30,12 @@ export const Contents = ({ blog }: { blog: Entry<IBlogFields> }) => {
     window.open(shareUrl, "_blank");
   };
 
+  const livePost = useContentfulLiveUpdates(blog);
+
   return (
     <>
       <div className="main">
-        <h1>{blog.fields.title}</h1>
+        <h1>{livePost.fields.title}</h1>
         <div className="sns-share">
           <a
             className="twitter"
@@ -59,9 +62,10 @@ export const Contents = ({ blog }: { blog: Entry<IBlogFields> }) => {
             <span>LINE</span>
           </a>
         </div>
+
         <p className="thumbnail">
           <Image
-            src={"https:" + blog.fields.thumbnail?.fields.file.url}
+            src={"https:" + blog.fields.thumbnail?.fields.file?.url}
             fill
             style={{ objectFit: "cover" }}
             alt=""
@@ -71,7 +75,7 @@ export const Contents = ({ blog }: { blog: Entry<IBlogFields> }) => {
         </p>
 
         <div className="contents">
-          {documentToReactComponents(blog.fields.blogcontent, {
+          {documentToReactComponents(livePost.fields.blogcontent, {
             renderNode: {
               // eslint-disable-next-line react/display-name
               [BLOCKS.HEADING_2]: (_, children) => {
