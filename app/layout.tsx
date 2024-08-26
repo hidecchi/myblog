@@ -3,7 +3,7 @@
 import "styles/globals.css";
 
 import { LivePreviewProvider } from "components/LIvePreviewProvider";
-import Loading from "components/Loading";
+// import Loading from "components/Loading";
 import { Sawarabi_Mincho } from "next/font/google";
 import { draftMode } from "next/headers";
 import { ReactNode } from "react";
