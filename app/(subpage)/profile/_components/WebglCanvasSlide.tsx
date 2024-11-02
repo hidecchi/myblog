@@ -12,6 +12,12 @@ import { createTexture, loadGLSLFile, setProgram } from "utils/webglUtils";
 
 import styles from "./WebglCanvasSlide.module.scss";
 
+type TickState = {
+  type: "stop" | "increase" | "decrease";
+  before: number;
+  number: number;
+};
+
 const slideItems = [
   {
     text: "Shisha Cafe&Barランデヴー様",
@@ -25,7 +31,11 @@ export const WebglCanvasSlide = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const firstSetUpRef = useRef<boolean>(true);
 
-  const tickRef = useRef<number>(0);
+  const tickStateRef = useRef<TickState>({
+    type: "stop",
+    before: 0,
+    number: 0,
+  });
 
   useEffect(() => {
     (async () => {
@@ -96,11 +106,28 @@ export const WebglCanvasSlide = () => {
 
       const tickLoc = gl.getUniformLocation(program, "uTick");
 
-      gl.uniform1f(tickLoc, tickRef.current);
+      gl.uniform1f(tickLoc, tickStateRef.current.number);
       const draw = () => {
         requestAnimationFrame(draw);
-
-        gl.uniform1f(tickLoc, tickRef.current);
+        if (tickStateRef.current.type === "increase") {
+          tickStateRef.current.number += 25;
+          if (
+            tickStateRef.current.before + 1000 <=
+            tickStateRef.current.number
+          ) {
+            tickStateRef.current.type = "stop";
+          }
+        }
+        if (tickStateRef.current.type === "decrease") {
+          tickStateRef.current.number -= 25;
+          if (
+            tickStateRef.current.before - 1000 >=
+            tickStateRef.current.number
+          ) {
+            tickStateRef.current.type = "stop";
+          }
+        }
+        gl.uniform1f(tickLoc, tickStateRef.current.number);
         gl.drawArrays(gl.TRIANGLES, 0, vertexData.length / 3);
       };
 
@@ -143,44 +170,35 @@ export const WebglCanvasSlide = () => {
           style={{ margin: "0 auto" }}
         />
       </a>
-      <ContorolPanel tickRef={tickRef} canvasWrapRef={canvasWrapRef} />
+      <ContorolPanel
+        tickStateRef={tickStateRef}
+        canvasWrapRef={canvasWrapRef}
+      />
     </>
   );
 };
 
 const ContorolPanel = ({
-  tickRef,
+  tickStateRef,
   canvasWrapRef,
 }: {
-  tickRef: MutableRefObject<number>;
+  tickStateRef: MutableRefObject<TickState>;
   canvasWrapRef: RefObject<HTMLAnchorElement>;
 }) => {
   const [slideIndex, setSlideIndex] = useState<number>(0);
 
   const onClickPrev = () => {
-    if (tickRef.current === 0) return;
-    // const currentTick = tickRef.current;
-    const timer = setInterval(() => {
-      tickRef.current = tickRef.current -= 6;
-      console.log(tickRef.current);
-      if (tickRef.current === 0) {
-        clearInterval(timer);
-      }
-    }, 1);
+    if (tickStateRef.current.number === 0) return;
+    tickStateRef.current.before = tickStateRef.current.number;
+    tickStateRef.current.type = "decrease";
     setSlideIndex(0);
     if (canvasWrapRef.current) canvasWrapRef.current.href = slideItems[0].link;
   };
 
   const onClickNext = () => {
-    if (tickRef.current >= 1000) return;
-    const currentTick = tickRef.current;
-    const timer = setInterval(() => {
-      tickRef.current = tickRef.current += 6;
-      console.log(tickRef.current);
-      if (tickRef.current >= currentTick + 1000) {
-        clearInterval(timer);
-      }
-    }, 1);
+    if (tickStateRef.current.number >= 1000) return;
+    tickStateRef.current.before = tickStateRef.current.number;
+    tickStateRef.current.type = "increase";
     setSlideIndex(1);
     if (canvasWrapRef.current) canvasWrapRef.current.href = slideItems[1].link;
   };
