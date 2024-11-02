@@ -59,20 +59,6 @@ const Page: NextPage = () => {
           className="image"
         />
       </a>
-      <a
-        className="image-wrap"
-        href="https://www.ichidai.co.jp/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <Image
-          src="/ichidai.png"
-          alt="株式会社一代"
-          width={1200}
-          height={638}
-          className="image"
-        />
-      </a>
     </div>
   );
 };
