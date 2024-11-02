@@ -40,3 +40,15 @@ export const getFormatedNow = () => {
     ("0" + second).slice(-2)
   );
 };
+
+export const debounce = (fn: () => void, interval: number) => {
+  let timer: ReturnType<typeof setTimeout>;
+  return () => {
+    // setTimeoutでinterval秒処理を待ち関数を実行
+    // debounce関数ががinterval秒内で複数呼び出されても、都度clearTimeoutを実行し、最後の1回だけ実行する
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+      fn();
+    }, interval);
+  };
+};

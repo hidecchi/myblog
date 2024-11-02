@@ -1,9 +1,6 @@
-// "use client";
-
 import "styles/globals.css";
 
 import { LivePreviewProvider } from "components/LIvePreviewProvider";
-import Loading from "components/Loading";
 import { Sawarabi_Mincho } from "next/font/google";
 import { draftMode } from "next/headers";
 import { ReactNode } from "react";
@@ -22,7 +19,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="ja">
       <body className={SawarabiMincho.variable}>
-        <Loading />
         <LivePreviewProvider isEnabled={isEnabled}>
           {children}
         </LivePreviewProvider>

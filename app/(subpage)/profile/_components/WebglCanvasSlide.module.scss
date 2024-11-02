@@ -1,0 +1,100 @@
+.canvasWrap {
+  display: block;
+  position: relative;
+  padding-top: 55%;
+  canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+.controlPanel {
+  padding-bottom: 40px;
+}
+
+.slideItemName {
+  margin-top: 12px;
+  text-align: center;
+  font-size: 20px;
+}
+
+.controlPanelBottom {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.prevButton {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1px solid #505050;
+  color: #505050;
+  margin-right: 32px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  appearance: none;
+  background-color: transparent;
+  cursor: pointer;
+  &::before {
+    content: "";
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    margin-right: -18px;
+    border-top: 1px solid;
+    border-right: 1px solid;
+    transform: rotate(-135deg);
+  }
+  &::after {
+    content: "";
+    width: 1.2rem;
+    height: 1px;
+    background-color: #505050;
+  }
+  &:disabled {
+    cursor: auto;
+  }
+}
+.nextButton {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1px solid #505050;
+  color: #505050;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  appearance: none;
+  background-color: transparent;
+  cursor: pointer;
+  &::before {
+    content: "";
+    width: 1.2rem;
+    height: 1px;
+    background-color: #505050;
+  }
+  &::after {
+    content: "";
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    margin-left: -18px;
+    border-top: 1px solid;
+    border-right: 1px solid;
+    transform: rotate(45deg);
+  }
+  &:disabled {
+    cursor: auto;
+  }
+}
+
+.indexInfo {
+  position: absolute;
+  right: 0;
+  bottom: 8px;
+}

@@ -23,7 +23,7 @@ const Page = async () => {
   const res = await client.getEntries<IBlogFields>({
     content_type: "blog",
     order: "-sys.createdAt",
-    limit: 6,
+    limit: "6",
   });
   const blogs = res.items;
 

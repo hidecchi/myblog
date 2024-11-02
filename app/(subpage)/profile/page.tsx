@@ -1,5 +1,6 @@
 import type { Metadata, NextPage } from "next";
-import Image from "next/image";
+
+import { WebglCanvasSlide } from "./_components/WebglCanvasSlide";
 
 export const metadata: Metadata = {
   title: "プロフィール | Kitsune Blog",
@@ -31,34 +32,7 @@ const Page: NextPage = () => {
         良かったら当ブログを楽しんでいってくださいませ。
       </p>
       <h2 className="heading heading2">制作実績</h2>
-      <a
-        className="image-wrap"
-        href="https://fukuokatenpo.com/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <Image
-          src="/tenant.png"
-          alt="飲食テナントナビ"
-          width={1200}
-          height={638}
-          className="image"
-        />
-      </a>
-      <a
-        href="https://rendezvous-shisha.com/"
-        className="image-wrap"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <Image
-          src="/randevouz.jpg"
-          alt="shisha cafe&bar ランデヴー"
-          width={1200}
-          height={638}
-          className="image"
-        />
-      </a>
+      <WebglCanvasSlide />
     </div>
   );
 };
