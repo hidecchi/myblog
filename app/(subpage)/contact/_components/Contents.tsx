@@ -39,18 +39,24 @@ export const Contents = () => {
       </p>
       <form onSubmit={onSubmitForm}>
         <label>
-          <span>お名前</span>
+          <span>
+            お名前<span className="required">（必須）</span>
+          </span>
           <input type="text" name="お名前" required />
         </label>
         <label>
-          <span>メールアドレス</span>
+          <span>
+            メールアドレス<span className="required">（必須）</span>
+          </span>
           <input type="email" name="メールアドレス" required />
         </label>
         <label>
-          <span>お問い合わせ内容</span>
+          <span>
+            お問い合わせ内容<span className="required">（必須）</span>
+          </span>
           <textarea name="お問い合わせ内容" required />
         </label>
-        <button type="submit">メッセージを送る</button>
+        <button type="submit">メッセージを送信する</button>
       </form>
       <p className="thanks">{thanks}</p>
     </div>

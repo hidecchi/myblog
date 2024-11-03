@@ -504,20 +504,26 @@ blockquote {
   }
   form label {
     display: block;
-    max-width: 400px;
+    // max-width: 400px;
     margin-bottom: 16px;
   }
   form label span {
     display: block;
   }
+  form label .required {
+    display: inline-block;
+    font-size: 14px;
+    color: red;
+  }
   form label input {
     appearance: none;
     outline: none;
     width: 100%;
-    max-width: 400px;
-    height: 30px;
+    padding: 0 8px;
+    // max-width: 400px;
+    height: 40px;
     border: 1px solid #d3cece;
-    border-radius: 0px;
+    border-radius: 8px;
   }
   form label input:focus {
     border: 1px solid #42b5e0;
@@ -528,13 +534,12 @@ blockquote {
     resize: none;
     outline: none;
     width: 100%;
-    max-width: 400px;
-    height: 130px;
-    padding: 8px 2px;
+    height: 240px;
+    padding: 8px 8px;
     font-family: Arial, YuGothic, "Yu Gothic medium", "Hiragino Sans", Meiryo,
       "sans-serif";
     border: 1px solid #d3cece;
-    border-radius: 0px;
+    border-radius: 8px;
   }
   form label textarea:focus {
     border: 1px solid #42b5e0;
