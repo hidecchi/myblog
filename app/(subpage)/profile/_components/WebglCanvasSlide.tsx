@@ -163,6 +163,7 @@ export const WebglCanvasSlide = () => {
         target="_blank"
         rel="noopener noreferrer"
         href={slideItems[0].link}
+        aria-label={`${slideItems[0].text}サイトへ`}
       >
         <canvas
           id="webgl-canvas"
@@ -192,7 +193,10 @@ const ContorolPanel = ({
     tickStateRef.current.before = tickStateRef.current.number;
     tickStateRef.current.type = "decrease";
     setSlideIndex(0);
-    if (canvasWrapRef.current) canvasWrapRef.current.href = slideItems[0].link;
+    if (canvasWrapRef.current) {
+      canvasWrapRef.current.href = slideItems[0].link;
+      canvasWrapRef.current.ariaLabel = `${slideItems[0].text}サイトへ`;
+    }
   };
 
   const onClickNext = () => {
@@ -200,7 +204,10 @@ const ContorolPanel = ({
     tickStateRef.current.before = tickStateRef.current.number;
     tickStateRef.current.type = "increase";
     setSlideIndex(1);
-    if (canvasWrapRef.current) canvasWrapRef.current.href = slideItems[1].link;
+    if (canvasWrapRef.current) {
+      canvasWrapRef.current.href = slideItems[1].link;
+      canvasWrapRef.current.ariaLabel = `${slideItems[1].text}サイトへ`;
+    }
   };
 
   return (
