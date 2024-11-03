@@ -38,7 +38,13 @@ const Sidebar = (): JSX.Element => {
           onChange={(e) => setInput(e.target.value)} /*変更時inputに値をセット*/
         />
         <button type="submit" disabled={!input} aria-label="検索する">
-          <Image src="/search.png" alt="" width={18} height={14} />
+          <Image
+            src="/search.png"
+            alt=""
+            width={32}
+            height={27}
+            style={{ width: "18px" }}
+          />
         </button>
       </form>
     </aside>
