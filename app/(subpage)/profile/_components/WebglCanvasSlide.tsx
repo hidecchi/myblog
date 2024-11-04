@@ -38,24 +38,22 @@ export const WebglCanvasSlide = () => {
   });
 
   useEffect(() => {
+    if (!firstSetUpRef.current) return;
+    if (!canvasRef.current) return;
+    if (!canvasRef.current.parentElement) return;
+
+    firstSetUpRef.current = false;
+
+    const parentWidth = canvasRef.current.parentElement.clientWidth;
+    const aspectRatio = 550 / 1000;
+
+    canvasRef.current.width = parentWidth;
+    canvasRef.current.height = parentWidth * aspectRatio;
+
+    const gl = canvasRef.current.getContext("webgl2");
+    const program = gl && gl.createProgram();
+
     (async () => {
-      if (!firstSetUpRef.current) return;
-      if (!canvasRef.current) return;
-      if (!canvasRef.current.parentElement) return;
-
-      firstSetUpRef.current = false;
-
-      // 親要素の幅に基づき、Canvasのサイズを設定
-      const parentWidth = canvasRef.current.parentElement.clientWidth;
-      const aspectRatio = 550 / 1000; // 使用する画像のアスペクト比
-
-      canvasRef.current.width = parentWidth; // 親要素の幅から40pxを引いた値
-      canvasRef.current.height = parentWidth * aspectRatio;
-
-      //////////////////////// 定型　////////////////////////
-      const gl = canvasRef.current.getContext("webgl2");
-      const program = gl && gl.createProgram();
-
       const [vertexShaderSource, fragmentShaderSource] = await Promise.all([
         loadGLSLFile("vertexShader.glsl"),
         loadGLSLFile("fragmentShader.glsl"),
@@ -66,7 +64,6 @@ export const WebglCanvasSlide = () => {
 
       setProgram(gl, program, vertexShaderSource, fragmentShaderSource);
       gl.enable(gl.DEPTH_TEST);
-      //////////////////////// 定型  ////////////////////////
 
       //////////////////////// attributeの設定　////////////////////////
       const vertexData = [
@@ -137,11 +134,11 @@ export const WebglCanvasSlide = () => {
     const onWindowResize = debounce(() => {
       if (!canvasRef.current) return;
       if (!canvasRef.current.parentElement) return;
-      // 親要素の幅に基づき、Canvasのサイズを設定
-      const parentWidth = canvasRef.current.parentElement.clientWidth;
-      const aspectRatio = 550 / 1000; // 使用する画像のアスペクト比
 
-      canvasRef.current.width = parentWidth; // 親要素の幅から40pxを引いた値
+      const parentWidth = canvasRef.current.parentElement.clientWidth;
+      const aspectRatio = 550 / 1000;
+
+      canvasRef.current.width = parentWidth;
       canvasRef.current.height = parentWidth * aspectRatio;
 
       const gl = canvasRef.current.getContext("webgl2");
@@ -152,7 +149,12 @@ export const WebglCanvasSlide = () => {
 
     window.addEventListener("resize", onWindowResize);
 
-    return () => window.removeEventListener("resize", onWindowResize);
+    return () => {
+      window.removeEventListener("resize", onWindowResize);
+      if (process.env.ENV !== "develop") {
+        gl?.getExtension("WEBGL_lose_context")?.loseContext();
+      }
+    };
   }, []);
 
   return (
@@ -171,15 +173,12 @@ export const WebglCanvasSlide = () => {
           style={{ margin: "0 auto" }}
         />
       </a>
-      <ContorolPanel
-        tickStateRef={tickStateRef}
-        canvasWrapRef={canvasWrapRef}
-      />
+      <ControlPanel tickStateRef={tickStateRef} canvasWrapRef={canvasWrapRef} />
     </>
   );
 };
 
-const ContorolPanel = ({
+const ControlPanel = ({
   tickStateRef,
   canvasWrapRef,
 }: {
