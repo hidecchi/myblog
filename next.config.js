@@ -13,4 +13,11 @@ module.exports = {
     CONTENTFUL_PREVIEW_TOKEN: process.env.CONTENTFUL_PREVIEW_TOKEN,
     ENV: process.env.ENV,
   },
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.glsl$/,
+      use: "raw-loader",
+    });
+    return config;
+  },
 };

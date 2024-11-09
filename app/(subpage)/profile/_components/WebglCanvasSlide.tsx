@@ -8,8 +8,10 @@ import {
   useState,
 } from "react";
 import { debounce } from "utils/utils";
-import { createTexture, loadGLSLFile, setProgram } from "utils/webglUtils";
+import { createTexture, setProgram } from "utils/webglUtils";
 
+import fragmentShaderSource from "./fragmentShader.glsl";
+import vertexShaderSource from "./vertexShader.glsl";
 import styles from "./WebglCanvasSlide.module.scss";
 
 type TickState = {
@@ -53,33 +55,27 @@ export const WebglCanvasSlide = () => {
     const gl = canvasRef.current.getContext("webgl2");
     const program = gl && gl.createProgram();
 
+    if (!gl || !program) return;
+
+    setProgram(gl, program, vertexShaderSource, fragmentShaderSource);
+    gl.enable(gl.DEPTH_TEST);
+
+    //////////////////////// attributeの設定　////////////////////////
+    const vertexData = [
+      -1, -1, 0, -1, 1, 0, 1, -1, 0, 1, 1, 0, 1, -1, 0, -1, 1, 0,
+    ];
+    const vertexBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
+    gl.bufferData(
+      gl.ARRAY_BUFFER,
+      new Float32Array(vertexData),
+      gl.STATIC_DRAW
+    );
+    gl.vertexAttribPointer(0, 3, gl.FLOAT, false, 12, 0);
+    gl.enableVertexAttribArray(0);
+    //////////////////////// attributeの設定　////////////////////////
+
     (async () => {
-      const [vertexShaderSource, fragmentShaderSource] = await Promise.all([
-        loadGLSLFile("vertexShader.glsl"),
-        loadGLSLFile("fragmentShader.glsl"),
-      ]);
-
-      if (!gl || !program || !vertexShaderSource || !fragmentShaderSource)
-        return;
-
-      setProgram(gl, program, vertexShaderSource, fragmentShaderSource);
-      gl.enable(gl.DEPTH_TEST);
-
-      //////////////////////// attributeの設定　////////////////////////
-      const vertexData = [
-        -1, -1, 0, -1, 1, 0, 1, -1, 0, 1, 1, 0, 1, -1, 0, -1, 1, 0,
-      ];
-      const vertexBuffer = gl.createBuffer();
-      gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
-      gl.bufferData(
-        gl.ARRAY_BUFFER,
-        new Float32Array(vertexData),
-        gl.STATIC_DRAW
-      );
-      gl.vertexAttribPointer(0, 3, gl.FLOAT, false, 12, 0);
-      gl.enableVertexAttribArray(0);
-      //////////////////////// attributeの設定　////////////////////////
-
       //////////////////////// textureの設定　////////////////////////
       await createTexture(
         gl,
@@ -145,13 +141,12 @@ export const WebglCanvasSlide = () => {
       if (gl) {
         gl.viewport(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight);
       }
-    }, 30);
-
+    }, 100);
     window.addEventListener("resize", onWindowResize);
 
     return () => {
-      window.removeEventListener("resize", onWindowResize);
       if (process.env.ENV !== "develop") {
+        window.removeEventListener("resize", onWindowResize);
         gl?.getExtension("WEBGL_lose_context")?.loseContext();
       }
     };
