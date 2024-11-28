@@ -32,6 +32,7 @@ const BlogCards = ({ blogs }: Props): JSX.Element => {
                 style={{ objectFit: "cover" }}
                 alt=""
                 sizes={"300px"}
+                loading="eager"
               />
             </p>
             <h2>{blog.fields.title}</h2>
