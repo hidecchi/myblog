@@ -72,7 +72,6 @@ export const Contents = ({ blog }: { blog: Entry<IBlogFields> }) => {
             priority={true}
             sizes={"450px"}
             loading="eager"
-            unoptimized
           />
         </p>
 
