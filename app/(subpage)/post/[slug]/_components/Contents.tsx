@@ -63,7 +63,7 @@ export const Contents = ({ blog }: { blog: Entry<IBlogFields> }) => {
           </a>
         </div>
 
-        <p className="thumbnail">
+        <p className="thumbnail" style={{ maxWidth: "450PX" }}>
           <Image
             src={"https:" + blog.fields.thumbnail?.fields.file?.url}
             fill
