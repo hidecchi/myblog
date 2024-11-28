@@ -12,26 +12,25 @@ export const Contents = () => {
   const searchParams = useSearchParams();
   const keyword = searchParams.get("keyword");
 
-  async function csrFetchData() {
-    const client = createClient({
-      space: process.env.CONTENTFUL_SPACE_ID as string,
-      accessToken: process.env.CONTENTFUL_ACCESS_TOKEN as string,
-    });
-    const res = await client.getEntries<IBlogFields>({
-      content_type: "blog",
-      order: "-sys.createdAt",
-      query: keyword,
-    });
-    setBlogs(res.items);
-  }
-
-  useEffect(() => {
+  const fetchBlogsByKeyword = async (_keyword: string | null) => {
     try {
-      csrFetchData();
+      const client = createClient({
+        space: process.env.CONTENTFUL_SPACE_ID as string,
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN as string,
+      });
+      const res = await client.getEntries<IBlogFields>({
+        content_type: "blog",
+        order: "-sys.createdAt",
+        query: _keyword,
+      });
+      setBlogs(res.items);
     } catch (error) {
       console.log(error);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  };
+
+  useEffect(() => {
+    fetchBlogsByKeyword(keyword);
   }, [keyword]);
 
   const heading = "検索結果";

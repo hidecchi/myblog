@@ -12,9 +12,7 @@ const Page: NextPage = () => {
           <div className="main">
             <h1>404</h1>
             <p>このページは存在しません。</p>
-            <p>
-              <Link href="/">トップに戻る</Link>
-            </p>
+            <Link href="/">トップに戻る</Link>
           </div>
           <Sidebar />
         </div>

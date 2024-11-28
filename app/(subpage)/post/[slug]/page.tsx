@@ -10,21 +10,6 @@ const client = createClient({
   accessToken: process.env.CONTENTFUL_ACCESS_TOKEN as string,
 });
 
-// export const getStaticPaths = async () => {
-//   const res = await client.getEntries<IBlogFields>({
-//     content_type: "blog",
-//   });
-//   const paths = res.items.map((item) => {
-//     return {
-//       params: { slug: item.fields.slug },
-//     };
-//   });
-//   return {
-//     paths,
-//     fallback: false,
-//   };
-// };
-
 export const generateMetadata = async ({
   params,
 }: {
@@ -64,11 +49,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
   const blog = res.items[0];
   if (!blog) return notFound();
 
-  return (
-    <>
-      <Contents blog={blog} />
-    </>
-  );
+  return <Contents blog={blog} />;
 };
 
 export default Page;
