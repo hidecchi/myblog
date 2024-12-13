@@ -1,8 +1,6 @@
 import BlogCards from "components/BlogCards";
-import { createClient } from "contentful";
+import { getBlogList } from "libs/contentful";
 import { Metadata } from "next";
-
-import { IBlogFields } from "../../@types/generated/contentful";
 
 export const metadata: Metadata = {
   title: "Kitsune Blog",
@@ -15,17 +13,7 @@ export const metadata: Metadata = {
 
 const Page = async () => {
   const heading = "新着記事";
-
-  const client = createClient({
-    space: process.env.CONTENTFUL_SPACE_ID as string,
-    accessToken: process.env.CONTENTFUL_ACCESS_TOKEN as string,
-  });
-  const res = await client.getEntries<IBlogFields>({
-    content_type: "blog",
-    order: "-sys.createdAt",
-    limit: "6",
-  });
-  const blogs = res.items;
+  const blogs = await getBlogList({ limit: 6 });
 
   return (
     <div className="main">

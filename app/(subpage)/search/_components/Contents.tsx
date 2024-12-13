@@ -1,7 +1,8 @@
 "use client";
 
 import BlogCards from "components/BlogCards";
-import { createClient, Entry } from "contentful";
+import { Entry } from "contentful";
+import { getBlogList } from "libs/contentful";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -14,18 +15,11 @@ export const Contents = () => {
 
   const fetchBlogsByKeyword = async (_keyword: string | null) => {
     try {
-      const client = createClient({
-        space: process.env.CONTENTFUL_SPACE_ID as string,
-        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN as string,
-      });
-      const res = await client.getEntries<IBlogFields>({
-        content_type: "blog",
-        order: "-sys.createdAt",
-        query: _keyword,
-      });
-      setBlogs(res.items);
+      const _blogs = await getBlogList({ query: _keyword || undefined });
+      setBlogs(_blogs);
     } catch (error) {
       console.log(error);
+      alert("記事を取得できませんでした。");
     }
   };
 
