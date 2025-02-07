@@ -72,8 +72,8 @@ export const WebglNoiseCube = () => {
       new Float32Array(vertexData),
       gl.STATIC_DRAW
     );
-    gl.vertexAttribPointer(0, 3, gl.FLOAT, false, 24, 0);
-    gl.vertexAttribPointer(1, 3, gl.FLOAT, false, 24, 12);
+    gl.vertexAttribPointer(0, 3, gl.FLOAT, false, 12, 0);
+    gl.vertexAttribPointer(1, 3, gl.FLOAT, false, 12, 12);
     gl.enableVertexAttribArray(0);
     gl.enableVertexAttribArray(1);
 
@@ -84,8 +84,8 @@ export const WebglNoiseCube = () => {
       new Float32Array(vertexData2),
       gl.STATIC_DRAW
     );
-    gl.vertexAttribPointer(2, 3, gl.FLOAT, false, 24, 0);
-    gl.vertexAttribPointer(3, 3, gl.FLOAT, false, 24, 12);
+    gl.vertexAttribPointer(2, 3, gl.FLOAT, false, 12, 0);
+    gl.vertexAttribPointer(3, 3, gl.FLOAT, false, 12, 12);
     gl.enableVertexAttribArray(2);
     gl.enableVertexAttribArray(3);
 
