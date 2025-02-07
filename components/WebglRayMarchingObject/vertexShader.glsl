@@ -4,7 +4,6 @@
 uniform mat4 uModel;
 uniform mat4 uView;
 uniform mat4 uProjection;
-uniform float uTick;
 
 layout(location = 0) in vec4 aPosition;
 

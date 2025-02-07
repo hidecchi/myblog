@@ -122,7 +122,7 @@ export const WebglRayMarchingObject = () => {
       clientY - canvasRef.current.getBoundingClientRect().top + window.scrollY;
       const mouseX = (clientX / window.innerWidth) * 2 - 1;
       const mouseY = 1 - (buffer / window.innerWidth) * 2;
-      console.log(mouseX, mouseY);
+      // console.log(mouseX, mouseY);
       gl.uniform2fv(mouseLoc, [mouseX, mouseY]);
     };
 
