@@ -1,5 +1,6 @@
 import "styles/globals.scss";
 
+import { GoogleTagManager } from "@next/third-parties/google";
 import { LivePreviewProvider } from "components/LIvePreviewProvider";
 import { Sawarabi_Mincho } from "next/font/google";
 import { draftMode } from "next/headers";
@@ -22,6 +23,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <LivePreviewProvider isEnabled={isEnabled}>
           {children}
         </LivePreviewProvider>
+        <GoogleTagManager gtmId={process.env.GTM_ID as string} />
       </body>
     </html>
   );

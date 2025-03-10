@@ -12,6 +12,7 @@ module.exports = {
     CONTENTFUL_DELIVERY_TOKEN: process.env.CONTENTFUL_DELIVERY_TOKEN,
     CONTENTFUL_PREVIEW_TOKEN: process.env.CONTENTFUL_PREVIEW_TOKEN,
     ENV: process.env.ENV,
+    GTM_ID: process.env.GTM_ID,
   },
   webpack: (config) => {
     config.module.rules.push({
