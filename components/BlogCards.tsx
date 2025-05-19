@@ -9,9 +9,9 @@ type Props = { blogs: Entry<IBlogFields>[] };
 
 const BlogCards = ({ blogs }: Props): JSX.Element => {
   return (
-    <ul className="blog-list">
+    <div className="blog-list">
       {blogs.map((blog) => (
-        <li key={blog.sys.id}>
+        <article key={blog.sys.id} className="blog-item">
           <div className="tag">
             {getTagLink(blog) ? (
               <Link
@@ -25,7 +25,7 @@ const BlogCards = ({ blogs }: Props): JSX.Element => {
             )}
           </div>
           <Link href={`/post/${blog.fields.slug}`} passHref>
-            <p className="thumbnail">
+            <div className="thumbnail">
               <Image
                 src={"https:" + blog.fields.thumbnail?.fields.file.url}
                 fill
@@ -34,17 +34,22 @@ const BlogCards = ({ blogs }: Props): JSX.Element => {
                 sizes={"300px"}
                 loading="eager"
               />
-            </p>
+            </div>
             <h2>{blog.fields.title}</h2>
-            <p className="date">
-              {blog.fields.date?.substring(0, 10).replace(/-/g, ".")}
-            </p>
+            {blog.fields.date && (
+              <time
+                className="date"
+                dateTime={blog.fields.date?.substring(0, 10).replace(/-/g, "-")}
+              >
+                {blog.fields.date?.substring(0, 10).replace(/-/g, ".")}
+              </time>
+            )}
           </Link>
-        </li>
+        </article>
       ))}
 
       <li></li>
-    </ul>
+    </div>
   );
 };
 

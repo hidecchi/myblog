@@ -138,18 +138,18 @@ blockquote {
   justify-content: space-between;
   flex-wrap: wrap;
 }
-.blog-list li {
+.blog-item {
   width: 31.6%;
   margin-bottom: 24px;
 }
-.blog-list li:last-of-type {
+.blog-item:last-of-type {
   margin-bottom: 0px;
 }
-.blog-list li h2 {
+.blog-item h2 {
   font-size: 17px;
 }
 
-.blog-list li .tag {
+.blog-item .tag {
   display: table;
   height: 30px;
   margin-bottom: 4px;
@@ -159,7 +159,7 @@ blockquote {
   position: relative;
   z-index: 10;
 }
-.blog-list li .tag a {
+.blog-item .tag a {
   height: 26px;
   padding: 0 12px 0 9px;
   border-radius: 13px;
@@ -168,10 +168,10 @@ blockquote {
   line-height: 26px;
 }
 
-.blog-list li a {
+.blog-item a {
   width: 100%;
 }
-.blog-list li > a:hover .thumbnail img {
+.blog-item > a:hover .thumbnail img {
   transform: scale(1.06);
 }
 .thumbnail {
@@ -287,7 +287,7 @@ blockquote {
   }
 }
 @media screen and (max-width: 800px) {
-  .blog-list li {
+  .blog-item {
     width: 47%;
   }
 }
@@ -307,10 +307,10 @@ blockquote {
     height: 42px;
   }
 
-  .blog-list li {
+  .blog-item {
     width: 100%;
   }
-  .blog-list li h2 {
+  .blog-item h2 {
     font-size: 18px;
   }
   .thumbnail {
