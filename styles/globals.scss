@@ -134,17 +134,11 @@ blockquote {
 }
 
 .blog-list {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(3, 1fr);
 }
-.blog-item {
-  width: 31.6%;
-  margin-bottom: 24px;
-}
-.blog-item:last-of-type {
-  margin-bottom: 0px;
-}
+
 .blog-item h2 {
   font-size: 17px;
 }
@@ -287,8 +281,8 @@ blockquote {
   }
 }
 @media screen and (max-width: 800px) {
-  .blog-item {
-    width: 47%;
+  .blog-list {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 @media screen and (max-width: 540px) {
@@ -307,8 +301,8 @@ blockquote {
     height: 42px;
   }
 
-  .blog-item {
-    width: 100%;
+  .blog-list {
+    grid-template-columns: repeat(1, 1fr);
   }
   .blog-item h2 {
     font-size: 18px;

@@ -47,8 +47,6 @@ const BlogCards = ({ blogs }: Props): JSX.Element => {
           </Link>
         </article>
       ))}
-
-      <li></li>
     </div>
   );
 };
