@@ -2,8 +2,9 @@ import BlogCards from "components/BlogCards";
 import Pager from "components/Pager";
 import { createClient } from "contentful";
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 
-import { IBlogFields } from "../../../@types/generated/contentful";
+import { IBlogFields } from "../../../../@types/generated/contentful";
 
 const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID as string,
@@ -25,6 +26,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
   const pageNumber = params.id;
   const startNumber = 6 * (Number(pageNumber || 1) - 1);
   const displays = res.items.slice(startNumber, startNumber + displayNumber);
+  if (!displays.length) return notFound();
   const heading = "アーカイブ";
   const pagers: number[] = [];
   for (let i = 1; i <= maxPageNumber; i++) {
@@ -34,7 +36,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
     <div className="main">
       <h1 className="heading">{heading}</h1>
       <BlogCards blogs={displays} />
-      <Pager path="/archive" pagers={pagers} pageNumber={1} />
+      <Pager path="/archive" pagers={pagers} pageNumber={Number(pageNumber)} />
     </div>
   );
 };
