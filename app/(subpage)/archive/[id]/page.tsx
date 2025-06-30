@@ -26,7 +26,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
   const pageNumber = params.id;
   const startNumber = 6 * (Number(pageNumber || 1) - 1);
   const displays = res.items.slice(startNumber, startNumber + displayNumber);
-  if (!displays.length) return notFound();
+  if (!displays.length || pageNumber === "1") return notFound();
   const heading = "アーカイブ";
   const pagers: number[] = [];
   for (let i = 1; i <= maxPageNumber; i++) {
