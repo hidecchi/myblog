@@ -12,7 +12,7 @@ const client = createClient({
 const displayNumber = 6;
 
 export const metadata: Metadata = {
-  title: "フリーランス | Kitsune Blog",
+  title: "プログラミング | Kitsune Blog",
   description: "WebエンジニアKitsuneのブログのアーカイブページです。",
 };
 
