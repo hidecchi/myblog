@@ -15,8 +15,12 @@ const SawarabiMincho = Sawarabi_Mincho({
   display: "swap",
 });
 
-export default function RootLayout({ children }: { children: ReactNode }) {
-  const { isEnabled } = draftMode();
+export default async function RootLayout({
+  children,
+}: {
+  children: ReactNode;
+}) {
+  const { isEnabled } = await draftMode();
   return (
     <html lang="ja">
       <body className={SawarabiMincho.variable}>

@@ -16,14 +16,15 @@ export const metadata: Metadata = {
   description: "WebエンジニアKitsuneのブログのアーカイブページです。",
 };
 
-const Page = async ({ params }: { params: { id: string } }) => {
+const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
+  const { id } = await params;
   const res = await client.getEntries<IBlogFields>({
     content_type: "blog",
     order: "-sys.createdAt",
     "metadata.tags.sys.id[all]": "programing",
   });
   const maxPageNumber = Math.ceil(res.items.length / displayNumber);
-  const pageNumber = params.id;
+  const pageNumber = id;
   const startNumber = 6 * (Number(pageNumber || 1) - 1);
   const displays = res.items.slice(startNumber, startNumber + displayNumber);
   const heading = "その他";

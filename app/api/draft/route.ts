@@ -34,12 +34,12 @@ export async function GET(request: Request) {
     return new Response("Blog not found", { status: 404 });
   }
 
-  draftMode().enable();
+  (await draftMode()).enable();
 
   // This is a hack due to a bug with cookies and NextJS, this code might not be required in the future
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
   const cookie = cookieStore.get("__prerender_bypass");
-  cookies().set({
+  (await cookies()).set({
     name: "__prerender_bypass",
     value: cookie?.value || "",
     httpOnly: true,

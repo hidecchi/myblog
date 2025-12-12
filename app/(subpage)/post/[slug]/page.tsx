@@ -7,9 +7,10 @@ import { Contents } from "./_components/Contents";
 export const generateMetadata = async ({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) => {
-  const blog = await getBlog(params.slug);
+  const { slug } = await params;
+  const blog = await getBlog(slug);
   if (!blog) return;
   return {
     title: `${blog.fields.title} | Kitsune Blog`,
@@ -23,9 +24,10 @@ export const generateMetadata = async ({
   };
 };
 
-const Page = async ({ params }: { params: { slug: string } }) => {
-  const { isEnabled } = draftMode();
-  const blog = await getBlog(params.slug, isEnabled);
+const Page = async ({ params }: { params: Promise<{ slug: string }> }) => {
+  const { slug } = await params;
+  const { isEnabled } = await draftMode();
+  const blog = await getBlog(slug, isEnabled);
   if (!blog) return notFound();
   return <Contents blog={blog} />;
 };
