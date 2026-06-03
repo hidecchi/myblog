@@ -26,7 +26,7 @@ const Header = ({ top }: { top?: boolean }): JSX.Element => {
     <header>
       {top ? (
         <h1 className="site-title">
-          <Link href="/">Kitsune Blog</Link>
+          <Link href="/">Kitsune Blog======</Link>
         </h1>
       ) : (
         <p className="site-title">
