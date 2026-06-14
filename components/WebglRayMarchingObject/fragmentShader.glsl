@@ -50,29 +50,30 @@ float boxSDF(vec3 p, vec3 b) {
     return length(max(q, 0.0f)) + min(max(q.x, max(q.y, q.z)), 0.0f);
 }
 // 球のSDF
-float sphereSDF(vec3 p, vec3 b, float r) {
-    return length(p - b) - r;
+float sphereSDF(vec3 p, float r) {
+  return length(p) - r;
+}
+
+float rand(vec2 co) {
+  return fract(sin(dot(co.xy, vec2(12.9898, 78.233))) * 43758.5453);
 }
 
 // 空間全体のSDF
 float sceneSDF(vec3 p) {
-    vec3 pRotated = rotate(p, vec3(1.0f), uTick / 200.f);
-    vec3 pAxisYRotete = rotate(pRotated, vec3(0.0f, 1.0f, 0.0f), uTick / 200.f);
+  vec3 pRotated = rotate(p, vec3(1.), uTick / 50.); // 立法体の回転
+  float box = boxSDF(pRotated, vec3(0.2));
 
-  // マウスに追従する球
-    // float sphereMouse = sphereSDF(p - 2.5f * vec3(uMouse * uHover - vec2(0.5f) * uHover, 0.0f), 0.5f);
+  float final = box;
+  // 中心のオブジェに向かってランダムに球が吸い込まれる
+//   for(int i = 0; i < 9; i++) {
+//     float randOffset = rand(vec2(i, 0.2));
+//     float progress = 1. - fract(uTick / 100. + randOffset * 3.);
+//     vec3 pos = vec3(sin(randOffset * 2. * 3.14), cos(randOffset * 2. * 3.14), 0.);
+//     float sphere = sphereSDF(p - pos * progress, 0.1 * sin(3.14 * progress));
+//     final = smin(final, sphere, 0.3);
+//   }
 
-    // float octa = octaSDF(pAxisYRotete, 1.2f);
-  // float box = sdBoxFrame(pAxisYRotete, vec3(0.6), 0.05);
-    float box = boxSDF(p, vec3(0.3f));
-    float sphere = sphereSDF(p, vec3(uMouse.xy, 0.0f), 0.4f);
-
-    float mixed = mix(box, sphere, 0.3f);
-    return mixed;
-
-    // float final = smin(sphereMouse, mixed, 0.8f);
-
-    return box;
+  return final;
 }
 
 // 点pにおける、SDFの等値面との法線ベクトルを求める関数。
@@ -86,13 +87,13 @@ vec3 gradSDF(vec3 p) {
 
 void main() {
     // カメラ（視点）の位置
-    vec3 cPos = vec3(0.0f, 0.0f, 2.0f);
+    vec3 cPos = vec3(0.0f, 0.0f, 1.0f);
 
         // 光源の位置
     vec3 lPos = vec3(2.0f);
 
     // レイの方向（カメラはZ軸負方向を向く）
-    vec3 ray = normalize(vec3(vTexCoord.xy, -2.0f));
+    vec3 ray = normalize(vec3(vTexCoord.xy, -1.0f));
 
     // レイの開始位置
     vec3 rPos = cPos;
@@ -103,7 +104,7 @@ void main() {
     fragColor = vec4(1.0f, 1.0f, 1.0f, 1.0f);
 
     // レイマーチングループ
-    for(int i = 0; i < 54; i++) {
+    for(int i = 0; i < 9; i++) {
         // 現在位置でのSDF値を計算
         // float dist = sphereSDF(rPos, vec3(0.0f, 0.0f, 1.0f), 0.4f);
         // float dist = boxSDF(rPos, vec3(0.3f));
@@ -117,15 +118,15 @@ void main() {
             // 拡散光の計算。光線の位置（物体にヒットしたポイント）から光源に伸びるベクトルとSDFの法線ベクトルとの内積を計算する。
             // 内積がマイナスになる（角度が180度以上になる場合）場合は0にする。
             vec3 sdfNormal = gradSDF(rPos);
-            float diff = 0.1f * max(dot(normalize(cPos - rPos), sdfNormal), 0.0f);
+            float diff = 0.2f * max(dot(normalize(lPos - rPos), sdfNormal), 0.0f);
 
             // スフィア環境マップ作成
             vec2 matcapUV = getmatcap(ray, sdfNormal);
-            vec3 color = vec3(0.0f);
+            vec3 color = vec3(1.0,0.0,0.0);
 
             color *= diff + amb;
 
-            fragColor = vec4(diff, diff, 0.5f, 0.3f);
+            fragColor =  vec4(diff,diff,0.5, 0.3);
             break;
         }
 
