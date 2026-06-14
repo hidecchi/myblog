@@ -1,10 +1,11 @@
 #version 300 es
 #pragma vscode_glsllint_stage: frag
 
-precision mediump float;
+precision highp float;
 
 uniform float uTick;
 uniform vec2 uMouse;
+uniform float uAspect;
 
 in vec4 vTexCoord;
 out vec4 fragColor;
@@ -65,13 +66,13 @@ float sceneSDF(vec3 p) {
 
   float final = box;
   // 中心のオブジェに向かってランダムに球が吸い込まれる
-//   for(int i = 0; i < 9; i++) {
-//     float randOffset = rand(vec2(i, 0.2));
-//     float progress = 1. - fract(uTick / 100. + randOffset * 3.);
-//     vec3 pos = vec3(sin(randOffset * 2. * 3.14), cos(randOffset * 2. * 3.14), 0.);
-//     float sphere = sphereSDF(p - pos * progress, 0.1 * sin(3.14 * progress));
-//     final = smin(final, sphere, 0.3);
-//   }
+  for(int i = 0; i < 6; i++) {
+    float randOffset = rand(vec2(i, 0.2));
+    float progress = 1. - fract(uTick / 100. + randOffset * 3.);
+    vec3 pos = vec3(sin(randOffset * 2. * 3.14), cos(randOffset * 2. * 3.14), 0.);
+    float sphere = sphereSDF(p - pos * progress, 0.1 * sin(3.14 * progress));
+    final = smin(final, sphere, 0.3);
+  }
 
   return final;
 }
@@ -86,17 +87,12 @@ vec3 gradSDF(vec3 p) {
 }
 
 void main() {
-    // カメラ（視点）の位置
-    vec3 cPos = vec3(0.0f, 0.0f, 1.0f);
-
-        // 光源の位置
+    // 光源の位置
     vec3 lPos = vec3(2.0f);
 
-    // レイの方向（カメラはZ軸負方向を向く）
-    vec3 ray = normalize(vec3(vTexCoord.xy, -1.0f));
-
-    // レイの開始位置
-    vec3 rPos = cPos;
+    // 正射投影に合わせた平行レイ（各ピクセルからZ軸負方向へ）
+    vec3 ray = vec3(0.0f, 0.0f, -1.0f);
+    vec3 rPos = vec3(vTexCoord.x * uAspect, vTexCoord.y, 1.0f);
 
     // fragColor = vec4(vTexCoord.x, vTexCoord.y, 0.0f, 1.0f);
 
@@ -104,7 +100,7 @@ void main() {
     fragColor = vec4(1.0f, 1.0f, 1.0f, 1.0f);
 
     // レイマーチングループ
-    for(int i = 0; i < 9; i++) {
+    for(int i = 0; i < 64; i++) {
         // 現在位置でのSDF値を計算
         // float dist = sphereSDF(rPos, vec3(0.0f, 0.0f, 1.0f), 0.4f);
         // float dist = boxSDF(rPos, vec3(0.3f));
@@ -120,13 +116,9 @@ void main() {
             vec3 sdfNormal = gradSDF(rPos);
             float diff = 0.2f * max(dot(normalize(lPos - rPos), sdfNormal), 0.0f);
 
-            // スフィア環境マップ作成
-            vec2 matcapUV = getmatcap(ray, sdfNormal);
-            vec3 color = vec3(1.0,0.0,0.0);
-
-            color *= diff + amb;
-
-            fragColor =  vec4(diff,diff,0.5, 0.3);
+            vec3 color = vec3(1.0f, 0.2f, 0.8);
+            float intensity = diff + amb;
+            fragColor = vec4(color * intensity, 0.8f);
             break;
         }
 

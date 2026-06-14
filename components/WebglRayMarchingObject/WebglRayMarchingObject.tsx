@@ -53,6 +53,7 @@ export const WebglRayMarchingObject = () => {
     const projectionLoc = gl.getUniformLocation(program, "uProjection");
     const tickLoc = gl.getUniformLocation(program, "uTick");
     const mouseLoc = gl.getUniformLocation(program, "uMouse");
+    const aspectLoc = gl.getUniformLocation(program, "uAspect");
 
     const model = mat4.create();
     const view = mat4.create();
@@ -83,6 +84,7 @@ export const WebglRayMarchingObject = () => {
     gl.uniformMatrix4fv(viewLoc, false, view);
     gl.uniformMatrix4fv(projectionLoc, false, projection);
     gl.uniform2fv(mouseLoc, [0.0, 0.0]);
+    gl.uniform1f(aspectLoc, aspect);
 
     let tick = 0;
     gl.uniform1f(tickLoc, tick);
@@ -108,6 +110,9 @@ export const WebglRayMarchingObject = () => {
       const gl = canvasRef.current.getContext("webgl2");
       if (gl) {
         gl.viewport(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight);
+        const newAspect =
+          canvasRef.current.width / canvasRef.current.height;
+        gl.uniform1f(aspectLoc, newAspect);
       }
     }, 30);
 
